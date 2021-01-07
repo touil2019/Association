@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AssociationApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(AssociationApplication.class, args);
 	}
 
