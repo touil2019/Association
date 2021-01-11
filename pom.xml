@@ -12,7 +12,7 @@
 	<artifactId>Association</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Association</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Application pour ACP association</description>
 
 	<properties>
 		<java.version>11</java.version>
