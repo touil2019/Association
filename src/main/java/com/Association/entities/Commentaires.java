@@ -6,24 +6,24 @@ import java.util.Date;
 
 
 @Entity
-public class commentaires implements Serializable {
+public class Commentaires implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_Membre")
+    @JoinColumn(name = "id_membre")
     private Membre membre;
 
     private String contenu;
 
     private Date date;
 
-    public commentaires() {
+    public Commentaires() {
     }
 
-    public commentaires(Long id, Membre membre, String contenu, Date date) {
+    public Commentaires(Long id, Membre membre, String contenu, Date date) {
         this.id = id;
         this.membre = membre;
         this.contenu = contenu;

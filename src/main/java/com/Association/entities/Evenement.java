@@ -6,10 +6,11 @@ import java.util.Collection;
 import java.util.Date;
 
 @Entity
-public class evenementCulturelles implements Serializable {
+public class Evenement implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_evenement")
     private Long id;
 
     private String theme;
@@ -18,37 +19,32 @@ public class evenementCulturelles implements Serializable {
 
     private Integer NombreParticipant;
 
-    private Integer NombreParticipantMax;
+    private Integer nombreParticipantMax;
 
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "id_Membre")
-    private Membre membre;
-
-    @OneToMany(mappedBy = "reservation", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Collection<reservation> reservations;
 
 
-    public evenementCulturelles() {
+    @ManyToMany
+    @JoinTable( name = "membre_evenement_associations",
+            joinColumns = @JoinColumn( name = "id_evenement" ),
+            inverseJoinColumns = @JoinColumn( name = "id_membre" ) )
+    private Collection<Membre> membres;
+
+    @OneToMany(mappedBy = "evenement", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Collection<Reservation> reservations;
+
+
+
+
+    public Evenement() {
     }
 
-    public evenementCulturelles(Long id, String theme, Date dateEvenement, Integer nombreParticipant, Integer nombreParticipantMax, String description, Membre membre) {
-        this.id = id;
+    public Evenement(String theme, Date dateEvenement, Integer nombreParticipantMax, String description) {
         this.theme = theme;
         this.dateEvenement = dateEvenement;
-        NombreParticipant = nombreParticipant;
-        NombreParticipantMax = nombreParticipantMax;
+        this.nombreParticipantMax = nombreParticipantMax;
         this.description = description;
-        this.membre = membre;
-    }
-
-    public Membre getMembre() {
-        return membre;
-    }
-
-    public void setMembre(Membre membre) {
-        this.membre = membre;
     }
 
     public Long getId() {
@@ -84,11 +80,11 @@ public class evenementCulturelles implements Serializable {
     }
 
     public Integer getNombreParticipantMax() {
-        return NombreParticipantMax;
+        return nombreParticipantMax;
     }
 
     public void setNombreParticipantMax(Integer nombreParticipantMax) {
-        NombreParticipantMax = nombreParticipantMax;
+        this.nombreParticipantMax = nombreParticipantMax;
     }
 
     public String getDescription() {
@@ -99,16 +95,32 @@ public class evenementCulturelles implements Serializable {
         this.description = description;
     }
 
+    public Collection<Membre> getMembres() {
+        return membres;
+    }
+
+    public void setMembres(Collection<Membre> membres) {
+        this.membres = membres;
+    }
+
+   public Collection<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Collection<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
     @Override
     public String toString() {
-        return "evenementCulturellesRepository{" +
+        return "evenementCulturelles{" +
                 "id=" + id +
                 ", theme='" + theme + '\'' +
                 ", dateEvenement=" + dateEvenement +
                 ", NombreParticipant=" + NombreParticipant +
-                ", NombreParticipantMax=" + NombreParticipantMax +
+                ", nombreParticipantMax=" + nombreParticipantMax +
                 ", description='" + description + '\'' +
-                ", membre=" + membre +
-                '}';
+                ", membres=" + membres +
+                 '}';
     }
 }

@@ -22,8 +22,8 @@ public class Membre implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "id_membre")
+    private Long idMembre;
 
     @Column(name = "pseudo", nullable = false, unique = true)
     @NotEmpty(message = "votre pseudo doit contenir au minimum 2 caractères")
@@ -56,7 +56,7 @@ public class Membre implements UserDetails {
     @NotNull
     private String adresse;
 
-    @NotNull
+
     private String complementAdresse;
 
     @NotNull
@@ -85,14 +85,17 @@ public class Membre implements UserDetails {
     private boolean enabled;
 
 
-    @OneToMany(mappedBy = "Membre", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Collection<evenementCulturelles> evenementCulturelles;
+   @ManyToMany
+   @JoinTable( name = "membre_evenement_associations",
+           joinColumns = @JoinColumn( name = "id_membre" ),
+           inverseJoinColumns = @JoinColumn( name = "id_evenement" ) )
+    private Collection<Evenement> evenements;
 
-    @OneToMany(mappedBy = "Membre", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Collection<reservation> reservations;
+    @OneToMany(mappedBy = "membre", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Collection<Reservation> reservations;
 
-    @OneToMany(mappedBy = "Membre", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Collection<commentaires> commentaires;
+    @OneToMany(mappedBy = "membre", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Collection<Commentaires> commentaires;
 
     public Membre() {
         this.accountNonExpired = true;
@@ -103,8 +106,8 @@ public class Membre implements UserDetails {
         this.roles.add(RoleEnum.ROLE_ACTIF);
     }
 
-    public Membre(Long id, @NotEmpty(message = "votre pseudo doit contenir au minimum 2 caractères") @Size(min = 2) String pseudo, @NotNull @Size(min = 4) String password, @NotNull @Email(message = "Veuillez saisir une adresse mail valide") String email, @NotNull @Size(min = 2) String nom, @NotNull @Size(min = 2) String prenom, @NotNull Integer age, @NotNull String adresse, @NotNull String complementAdresse, @NotNull String codePostale, @NotNull String ville) {
-        this.id = id;
+    public Membre( @NotEmpty(message = "votre pseudo doit contenir au minimum 2 caractères") @Size(min = 2) String pseudo, @NotNull @Size(min = 4) String password, @NotNull @Email(message = "Veuillez saisir une adresse mail valide") String email, @NotNull @Size(min = 2) String nom, @NotNull @Size(min = 2) String prenom, @NotNull Integer age, @NotNull String adresse, @NotNull String complementAdresse, @NotNull String codePostale, @NotNull String ville) {
+
         this.pseudo = pseudo;
         this.password = password;
         this.email = email;
@@ -117,12 +120,12 @@ public class Membre implements UserDetails {
         this.ville = ville;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdMembre() {
+        return idMembre;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdMembre(Long id) {
+        this.idMembre = id;
     }
 
     public String getPseudo() {
@@ -264,29 +267,52 @@ public class Membre implements UserDetails {
         this.enabled = enabled;
     }
 
-    public Collection<com.Association.entities.evenementCulturelles> getEvenementCulturelles() {
-        return evenementCulturelles;
+    public Collection<Evenement> getEvenements() {
+        return evenements;
     }
 
-    public void setEvenementCulturelles(Collection<com.Association.entities.evenementCulturelles> evenementCulturelles) {
-        this.evenementCulturelles = evenementCulturelles;
+    public void setEvenements(Collection<Evenement> evenements) {
+        this.evenements = evenements;
     }
 
-    public Collection<reservation> getReservations() {
+    public Collection<Reservation> getReservations() {
         return reservations;
     }
 
-    public void setReservations(Collection<reservation> reservations) {
+    public void setReservations(Collection<Reservation> reservations) {
         this.reservations = reservations;
     }
 
-    public Collection<com.Association.entities.commentaires> getCommentaires() {
+    public Collection<Commentaires> getCommentaires() {
         return commentaires;
     }
 
-    public void setCommentaires(Collection<com.Association.entities.commentaires> commentaires) {
+    public void setCommentaires(Collection<Commentaires> commentaires) {
         this.commentaires = commentaires;
     }
 
-
+    @Override
+    public String toString() {
+        return "Membre{" +
+                "idMembre=" + idMembre +
+                ", pseudo='" + pseudo + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", age=" + age +
+                ", adresse='" + adresse + '\'' +
+                ", complementAdresse='" + complementAdresse + '\'' +
+                ", codePostale='" + codePostale + '\'' +
+                ", ville='" + ville + '\'' +
+                ", roles=" + roles +
+                ", accountNonExpired=" + accountNonExpired +
+                ", accountNonLocked=" + accountNonLocked +
+                ", credentialsNonExpired=" + credentialsNonExpired +
+                ", enabled=" + enabled +
+                ", evenements=" + evenements +
+                ", Reservations=" + reservations +
+                ", commentaires=" + commentaires +
+                '}';
+    }
 }
