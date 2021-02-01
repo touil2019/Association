@@ -1,11 +1,13 @@
 package com.Association;
 
 import com.Association.dao.CommentairesRepository;
-import com.Association.dao.EvenementCulturellesRepository;
+import com.Association.dao.EvenementCulturelRepository;
 import com.Association.dao.MembreRepository;
+import com.Association.dao.ReservationRepository;
 import com.Association.entities.Commentaires;
 import com.Association.entities.Evenement;
 import com.Association.entities.Membre;
+import com.Association.entities.Reservation;
 import com.Association.security.RoleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,10 +24,13 @@ public class AssociationApplication implements CommandLineRunner {
 	MembreRepository membreRepository;
 
 	@Autowired
-	EvenementCulturellesRepository evenementCulturellesRepository;
+	EvenementCulturelRepository evenementCulturelRepository;
 
 	@Autowired
 	CommentairesRepository commentairesRepository;
+
+	@Autowired
+	ReservationRepository reservationRepository;
 
 	public static void main(String[] args) {
 
@@ -40,6 +45,11 @@ public class AssociationApplication implements CommandLineRunner {
 	@PostConstruct
 	public void postConstruct(){
 
+
+		/**
+ 		* Rôles et Membres de l'Association
+		*
+		*/
 		Membre actif = new Membre("membre","membre","membre@gmail.com","membre","membre",34,"18 Rue Du Colonnel FABIEN","1 étage porte droite","75011","PARIS");
 		Set<RoleEnum> actifRole = new HashSet<>();
 		actifRole.add(RoleEnum.ROLE_ACTIF);
@@ -76,19 +86,37 @@ public class AssociationApplication implements CommandLineRunner {
 		membreRepository.save(admin);
 
 
+		/**
+		 * Evènement Culturel
+		 */
 		Evenement evenement = new Evenement("Art",new GregorianCalendar(2021, Calendar.FEBRUARY,10).getTime(),10,"Atelier d'art plastique");
-		evenementCulturellesRepository.save(evenement);
+		evenementCulturelRepository.save(evenement);
 
 		Evenement evenement1 = new Evenement("Musique",new GregorianCalendar(2021, Calendar.FEBRUARY,12).getTime(),10,"Chorale & Orchestre de l'association afin de réaliser un concert");
-		evenementCulturellesRepository.save(evenement1);
+		evenementCulturelRepository.save(evenement1);
 
 		Evenement evenement2 = new Evenement("Conférence",new GregorianCalendar(2021, Calendar.FEBRUARY,13).getTime(),10,"Conférence sur la culture du vivre-ensemble");
-		evenementCulturellesRepository.save(evenement2);
+		evenementCulturelRepository.save(evenement2);
 
+		/**
+		 * commentaires des membres
+		 */
 		Commentaires commentaires = new Commentaires(1L,actif1,"Super ambiance lors du dernier atelier musique et l'initiation au didgeridoo",new GregorianCalendar(2021, Calendar.FEBRUARY,3).getTime());
 		commentairesRepository.save(commentaires);
 
 		Commentaires commentaires1 = new Commentaires(2L,actif,"Super ambiance lors du dernier atelier musique et l'initiation au didgeridoo",new GregorianCalendar(2021, Calendar.FEBRUARY,3).getTime());
 		commentairesRepository.save(commentaires1);
+
+		/**
+		 * réservations évènements
+		 */
+		Reservation reservation = new Reservation(new GregorianCalendar(2021, Calendar.FEBRUARY,2).getTime(), evenement.getDescription(), actif, evenement);
+		reservationRepository.save(reservation);
+
+		Reservation reservation1 = new Reservation(new GregorianCalendar(2021, Calendar.FEBRUARY,12).getTime(), evenement1.getDescription(), actif1, evenement1);
+		reservationRepository.save(reservation1);
+
+
+
 	}
 }
