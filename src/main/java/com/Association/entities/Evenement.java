@@ -17,7 +17,7 @@ public class Evenement implements Serializable {
 
     private Date dateEvenement;
 
-    private Integer NombreParticipant;
+    private Integer nombreParticipant;
 
     private Integer nombreParticipantMax;
 
@@ -33,7 +33,6 @@ public class Evenement implements Serializable {
 
     @OneToMany(mappedBy = "evenement", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Reservation> reservations;
-
 
 
 
@@ -72,11 +71,11 @@ public class Evenement implements Serializable {
     }
 
     public Integer getNombreParticipant() {
-        return NombreParticipant;
+        return nombreParticipant;
     }
 
     public void setNombreParticipant(Integer nombreParticipant) {
-        NombreParticipant = nombreParticipant;
+        this.nombreParticipant = nombreParticipant;
     }
 
     public Integer getNombreParticipantMax() {
@@ -117,7 +116,7 @@ public class Evenement implements Serializable {
                 "id=" + id +
                 ", theme='" + theme + '\'' +
                 ", dateEvenement=" + dateEvenement +
-                ", NombreParticipant=" + NombreParticipant +
+                ", NombreParticipant=" + nombreParticipant +
                 ", nombreParticipantMax=" + nombreParticipantMax +
                 ", description='" + description + '\'' +
                 ", membres=" + membres +

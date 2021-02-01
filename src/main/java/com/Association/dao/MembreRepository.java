@@ -17,3 +17,4 @@ public interface MembreRepository extends JpaRepository<Membre,Long> {
     public Membre findByPseudo(@Param("pseudo") String pseudo);
 
 }
+
