@@ -29,7 +29,7 @@ public class LoginController {
 
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             logger.info("connexion du membre"+ SecurityContextHolder.getContext().getAuthentication().getName());
-            return new ModelAndView("redirect:/site/search");
+            return new ModelAndView("redirect:/home");
         }
         return new ModelAndView("login");
     }
@@ -44,7 +44,7 @@ public class LoginController {
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
-            logger.info("L'utilisateur "+ SecurityContextHolder.getContext().getAuthentication().getName()+" s'est déconnecté");
+            logger.info("Le Membre "+ SecurityContextHolder.getContext().getAuthentication().getName()+" s'est déconnecté");
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/login";

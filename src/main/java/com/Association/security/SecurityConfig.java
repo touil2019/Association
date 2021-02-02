@@ -17,10 +17,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    private final UserDetailsService userDetailsService;
+    private final UserService userDetailsService;
 
     @Autowired
-    public SecurityConfig(@Qualifier("userService") UserDetailsService userDetailsService) {
+    public SecurityConfig( UserService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().loginPage("/login").defaultSuccessUrl("/site")
+        http.formLogin().loginPage("/login").defaultSuccessUrl("/home")
                 .failureUrl("/login").usernameParameter("username")
                 .passwordParameter("password")
                 .and()
@@ -49,7 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .expiredUrl("/login");
 
 
-        http.authorizeRequests().antMatchers("*/creer*","*/save*","*/supprimer").hasRole("USER");
+        http.authorizeRequests().antMatchers("*/creer*","*/save*","*/supprimer").hasRole("ADMIN");
+
+
 
     }
     /**

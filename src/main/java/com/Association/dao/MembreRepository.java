@@ -16,5 +16,8 @@ public interface MembreRepository extends JpaRepository<Membre,Long> {
     @Query("select p from Membre p where p.pseudo=:pseudo")
     public Membre findByPseudo(@Param("pseudo") String pseudo);
 
+    @Query("select e from Membre e where e.email=:email")
+    public Membre findByEmail(@Param("email") String email);
+
 }
 

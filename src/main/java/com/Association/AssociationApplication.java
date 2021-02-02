@@ -83,6 +83,7 @@ public class AssociationApplication implements CommandLineRunner {
 		adminRole.add(RoleEnum.ROLE_BIENFAITEUR);
 		adminRole.add(RoleEnum.ROLE_HONORAIRE);
 		admin.setRoles(adminRole);
+		admin.setEnabled(true);
 		membreRepository.save(admin);
 
 
