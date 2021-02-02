@@ -29,8 +29,7 @@ public class LoginController {
 
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             logger.info("connexion du membre"+ SecurityContextHolder.getContext().getAuthentication().getName());
-            return new ModelAndView("redirect:/" +
-                    "");
+            return new ModelAndView("redirect:/");
         }
         return new ModelAndView("login");
     }
