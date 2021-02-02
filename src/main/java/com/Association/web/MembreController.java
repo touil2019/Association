@@ -22,7 +22,7 @@ public class MembreController {
 
     @GetMapping(value = "/")
     public String home(){
-        return "home"; }
+        return "home2"; }
 
 
 

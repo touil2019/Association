@@ -1,7 +1,6 @@
 package com.Association.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -17,10 +16,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    private final UserService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
-    public SecurityConfig( UserService userDetailsService) {
+    public SecurityConfig(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
@@ -36,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin().loginPage("/login").defaultSuccessUrl("/home")
+        http.formLogin().loginPage("/login").defaultSuccessUrl("/")
                 .failureUrl("/login").usernameParameter("username")
                 .passwordParameter("password")
                 .and()
@@ -49,9 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .expiredUrl("/login");
 
 
-        http.authorizeRequests().antMatchers("*/creer*","*/save*","*/supprimer").hasRole("ADMIN");
-
-
+        http.authorizeRequests().antMatchers("*/creer*","*/save*","*/supprimer").hasRole("USER");
 
     }
     /**

@@ -1,15 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+<html xmlns:th="htpp://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Association ACP </title>
 
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <link
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             rel="stylesheet"
@@ -23,30 +16,36 @@
             src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
             integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o"
             crossorigin="anonymous"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta initial-scale="1">
 </head>
 
 <body>
 
 <header>
-    <ul class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
+    <div class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
         <div class="brand_logo_container">
             <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQbTSEgIlBjydMFzhjDAxyBxrCkZ_AB9rJ9uTv7uf06Sw&usqp=CAU&ec=45687376"
+                    src="https://user.oc-static.com/upload/2019/04/26/15562870935067_icon-above-font.png"
                     class="brand_logo" alt="Logo">
         </div>
 
-
+        <span class="navbar-toggler-icon"></span>
         <nav class="nav navbar-nav">
             <ul class="navbar-nav m-auto">
-                <li  class="nav-item active"><a class="btn btn-primary" th:href="@{/}">Accueil</a></li>
-                <li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/Monprofile}">Mon Compte</a></li>
+                <li  class="nav-item active"><a class="btn btn-primary" th:href="@{/site}">Site</a></li>
+                <li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/site/creer}">Ajouter Un Site</a></li>
+                <li class="nav-item"><a class="btn btn-primary" th:href="@{/site/trouver}">Rechercher</a></li>
+                <li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/topo}">Topo</a></li>
+                <li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/reservation}">Mes Réservations</a></li>
+                <li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/profil}">Mon Compte</a></li>
                 <li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal == null}" th:href="@{/login}">Connexion</a></li>
                 <li class="nav-item"><a class="btn btn-primary" th:href="@{/logout}" th:if="${#request.userPrincipal != null}" >Déconnexion</a></li>
 
             </ul>
-
         </nav>
-    </ul>
     </div>
 </header>
 <hr />
@@ -56,8 +55,9 @@
     <hr />
     <hr />
     <div class="containe">
-        <small> Copyright 2021 </small>
+        <small> Copyright 2020 </small>
     </div>
 </footer>
 </body>
 </html>
+
