@@ -19,7 +19,7 @@
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <meta charset="UTF-8" />
-    <meta initial-scale="1">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 </head>
 
 <body>
@@ -28,22 +28,20 @@
     <div class="navbar navbar-expand-md navbar-dark bg-primary sticky-top">
         <div class="brand_logo_container">
             <img
-                    src="https://user.oc-static.com/upload/2019/04/26/15562870935067_icon-above-font.png"
-                    class="brand_logo" alt="Logo">
+                    class=img-responsive
+                    src="static/images/logo.png" width="200px" height="200px" alt="Info Logo" />
         </div>
 
         <span class="navbar-toggler-icon"></span>
         <nav class="nav navbar-nav">
             <ul class="navbar-nav m-auto">
-                <li  class="nav-item active"><a class="btn btn-primary" th:href="@{/site}">Site</a></li>
-                <li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/site/creer}">Ajouter Un Site</a></li>
-                <li class="nav-item"><a class="btn btn-primary" th:href="@{/site/trouver}">Rechercher</a></li>
-                <li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/topo}">Topo</a></li>
-                <li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/reservation}">Mes Réservations</a></li>
-                <li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/profil}">Mon Compte</a></li>
-                <li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal == null}" th:href="@{/login}">Connexion</a></li>
+                <li  class="nav-item active"><a class="btn btn-primary" th:href="@{/home}">Accueil</a></li>
+                <li class="nav-item"><a class="btn btn-primary" th:href="@{/home/art}">Art</a></li>
+                <li class="nav-item"><a class="btn btn-primary" th:href="@{/home/culture}">Culture</a></li>
+                <li class="nav-item"><a class="btn btn-primary" th:href="@{/home/conference}">Conférence</a></li>
+                <li class="nav-item"><a class="btn btn-primary" th:if="${#request.userPrincipal != null}" th:href="@{/profil}">Mon Espace</a></li>
+                <li class="nav-item"><a class="btn btn-primary" th:href="@{/login}">Connexion</a></li>
                 <li class="nav-item"><a class="btn btn-primary" th:href="@{/logout}" th:if="${#request.userPrincipal != null}" >Déconnexion</a></li>
-
             </ul>
         </nav>
     </div>
@@ -55,7 +53,7 @@
     <hr />
     <hr />
     <div class="containe">
-        <small> Copyright 2020 </small>
+        <small> Copyright 2021 </small>
     </div>
 </footer>
 </body>

@@ -22,7 +22,7 @@ public class MembreController {
 
     @GetMapping(value = "/")
     public String home(){
-        return "home2"; }
+        return "home"; }
 
 
 
@@ -35,7 +35,7 @@ public class MembreController {
     public String creerMembre(Model model) {
         Membre membre = new Membre();
         model.addAttribute("membre", membre);
-        return "CreerMembre";
+        return "inscription";
     }
 
     /**
