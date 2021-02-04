@@ -19,6 +19,7 @@ public class LoginController {
 
     private static final Logger logger = LogManager.getLogger(LoginController.class);
 
+
     /**
      * method used to log-in an user
      * @return a page depending on success of authentication

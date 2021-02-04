@@ -2,6 +2,9 @@ package com.Association.web;
 
 import com.Association.dao.MembreRepository;
 import com.Association.entities.Membre;
+import com.Association.métier.IAssociationMetier;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,12 +18,18 @@ import javax.validation.Valid;
 @Controller
 public class MembreController {
 
+    private static final Logger logger = LogManager.getLogger(MembreController.class);
+
+    @Autowired
+    private IAssociationMetier iAssociationMetier;
+
     @Autowired
     MembreRepository membreRepository;
 
 
 
-    @GetMapping(value = "/")
+
+    @GetMapping(value = "/home")
     public String home(){
         return "home"; }
 
@@ -40,15 +49,14 @@ public class MembreController {
 
     /**
      *
-     * @param model
      * @param membre
      * @param bindingResult
      * @return
      */
     @RequestMapping(value = "/membre/save", method = RequestMethod.POST)
-    public String saveMembre(Model model, @Valid Membre membre, BindingResult bindingResult) {
+    public String saveMembre(@Valid Membre membre, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "CreerMembre";
+            return "inscription";
         }
         membreRepository.save(membre);
 
