@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AssociationMetierImpl implements IAssociationMetier {
@@ -43,21 +45,7 @@ public class AssociationMetierImpl implements IAssociationMetier {
     public Membre findByEmail(String email) {
         return membreRepository.findByEmail(email);
     }
-/*
-    @Override
-    public List<Evenement> listeEvenementThemeArt(String theme) {
-        return evenementCulturelRepository.listeEvenementThemeArt(theme);
-    }
 
-    @Override
-    public List<Evenement> listeEvenementThemeCulture(String theme) {
-        return evenementCulturelRepository.listeEvenementThemeCulture(theme);
-    }
-
-    @Override
-    public List<Evenement> listeEvenementThemeConference(String theme) {
-        return evenementCulturelRepository.listeEvenementThemeConference(theme);
-    }*/
 
     @Override
     public Membre userConnected() {
@@ -69,4 +57,20 @@ public class AssociationMetierImpl implements IAssociationMetier {
     public List<Membre> listMembre(Long id) {
         return membreRepository.listMembre(id);
     }
+
+    @Override
+    public Optional<Evenement> findById(Long id) {
+        return evenementCulturelRepository.findById(id);
+    }
+
+    @Override
+    public List<Evenement> findAllByThemeAndDateEvenementAfter(String theme, Date dateEvenement) {
+        return evenementCulturelRepository.findAllByThemeAndDateEvenementAfter(theme, dateEvenement);
+    }
+
+    @Override
+    public List<Evenement> listeEvenementParTheme(String theme) {
+        return evenementCulturelRepository.listeEvenementParTheme(theme);
+    }
+
 }

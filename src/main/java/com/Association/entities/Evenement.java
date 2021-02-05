@@ -15,6 +15,8 @@ public class Evenement implements Serializable {
 
     private String theme;
 
+    private String nom;
+
     private Date dateEvenement;
 
     private Integer nombreParticipant;
@@ -39,8 +41,9 @@ public class Evenement implements Serializable {
     public Evenement() {
     }
 
-    public Evenement(String theme, Date dateEvenement, Integer nombreParticipantMax, String description) {
+    public Evenement(String theme, String nom, Date dateEvenement, Integer nombreParticipantMax, String description) {
         this.theme = theme;
+        this.nom = nom;
         this.dateEvenement = dateEvenement;
         this.nombreParticipantMax = nombreParticipantMax;
         this.description = description;
@@ -108,6 +111,14 @@ public class Evenement implements Serializable {
 
     public void setReservations(Collection<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     @Override

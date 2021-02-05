@@ -5,20 +5,21 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface EvenementCulturelRepository extends JpaRepository<Evenement,Long> {
 
 
-/*    @Query(value="SELECT e from Evenement e inner join fetch e.theme e where e.theme=:Art order by e.dateEvenement desc",
-            countQuery = "select count (e) from Evenement inner join e.theme e where e.theme=:Art")
-    List<Evenement> listeEvenementThemeArt(@Param("Art") String theme);
+    @Query(value="SELECT e from Evenement e where e.theme=:theme order by e.dateEvenement asc")
+    List<Evenement> listeEvenementParTheme(@Param("theme") String theme);
 
-    @Query(value="SELECT e from Evenement e inner join fetch e.theme e where e.theme=:Culture order by e.dateEvenement desc",
-            countQuery = "select count (e) from Evenement inner join e.theme e where e.theme=:Culture")
-    List<Evenement> listeEvenementThemeCulture(@Param("culture") String theme);
+    List<Evenement> findAllByThemeAndDateEvenementAfter(String theme,Date dateEvenement);
 
-    @Query(value="SELECT e from Evenement e inner join fetch e.theme e where e.theme=:Conference order by e.dateEvenement desc",
-            countQuery = "select count (e) from Evenement inner join e.theme e where e.theme=:Conference")
-    List<Evenement> listeEvenementThemeConference(@Param("Conference") String theme);*/
+
+    Optional<Evenement> findById(Long id);
+
+    @Query("select e from Evenement e where e.id= 1 order by e.dateEvenement asc")
+    Optional<Evenement> monEventArt();
 }

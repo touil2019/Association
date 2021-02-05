@@ -90,13 +90,13 @@ public class AssociationApplication implements CommandLineRunner {
 		/**
 		 * Evènement Culturel
 		 */
-		Evenement evenement = new Evenement("Art",new GregorianCalendar(2021, Calendar.FEBRUARY,10).getTime(),10,"Atelier d'art plastique");
+		Evenement evenement = new Evenement("Art","Atelier Art Plastique",new GregorianCalendar(2021, Calendar.FEBRUARY,10).getTime(),10,"Atelier d'art plastique");
 		evenementCulturelRepository.save(evenement);
 
-		Evenement evenement1 = new Evenement("Culture",new GregorianCalendar(2021, Calendar.FEBRUARY,12).getTime(),10,"Séance de lecture libre et Club de lecture");
+		Evenement evenement1 = new Evenement("Culture","Club De Lecture",new GregorianCalendar(2021, Calendar.FEBRUARY,12).getTime(),10,"Séance de lecture libre et Club de lecture");
 		evenementCulturelRepository.save(evenement1);
 
-		Evenement evenement2 = new Evenement("Conférence",new GregorianCalendar(2021, Calendar.FEBRUARY,13).getTime(),10,"Conférence sur la culture du vivre-ensemble");
+		Evenement evenement2 = new Evenement("Conférence","Vivre Ensemble",new GregorianCalendar(2021, Calendar.FEBRUARY,13).getTime(),10,"Conférence sur la culture du vivre-ensemble");
 		evenementCulturelRepository.save(evenement2);
 
 		/**

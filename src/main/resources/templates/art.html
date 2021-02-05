@@ -19,224 +19,59 @@
 
 <body layout:fragment="content">
         <div class="page-corps">
-                <div class="art-presentation" class="card mb-3">
-                        <div class="event-container">
-                                <div class="event">
-                                        <div class="art-envent-pic col-md-4">
-                                                <img class=img-responsive src="images/logo.png" style="width:80%;" alt="Info Logo" />
-                                        </div>
-                                        <div class="art-event-description col-md-8">
-                                                <div class="card-body">
-                                                <h5 class="card-title">Art n°1</h5>
-                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-                                                This is a wider card with supporting text below as a natural lead-in fdyizafdizafdfdiyzafdiydzfiyzafdiyzfiyzfdiyza
-                                                fiyfdiyazfdyzifdiyzafdiyzafydfziydzfaiydfzy to additional content.
-                                                This is a wider card with supporting text below as a natural lead-into additional content.
-                                                This is a wider card with supporting text belowas a natural lead-in to additional content.
-                                                This is a wider card with supporting text below as a natural lead-in to additional content.<br/>
-                                                This is a wider card with supporting text below as a natural lead-in to additional content.<br/>
-                                                This content is a little bit longer.</p>
-                                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                                </div> 
-                                        </div>
+            <div th:each="evenement:${evenements}">
+                <div class="art-presentation card mb-3">
+                    <div class="event-container">
+                        <div class="event">
+                            <div class="art-envent-pic col-md-4">
+                                <img class=img-responsive src="images/logo.png" style="width:80%;" alt="Info Logo" />
+                            </div>
+                            <div class="art-event-description col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">[[${evenement.nom}]]</h5>
+                                    <label>Aura lieu le: <label th:text="${#dates.format(evenement.dateEvenement, 'dd-MM-yyyy')}"></label></label><br/>
+                                    <label>Nombre de participants maximum: [[${evenement.nombreParticipantMax}]]</label>
+                                    <p class="card-text">[[${evenement.description}]]</p>
+
                                 </div>
-                <button type="submit" class="btn btn-primary mb-2">PARTICIPER</button>
+                            </div>
                         </div>
-                        <div id="accordeon">
-                                <div class="card">
-                                    <div class="card-header" style="background-color: #ffffff">
-                                        <div>
-                                            <a href="#item1" class="card-link" data-toggle="collapse" data-parent="#accordeon">
-                                                <h2>Liste des inscrits</h2>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="collapse show" id="item1">
-                                        <div class="card-body" style="background-color: white;">
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th>Nom</th>
-                                                    <th>Prénom</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr ></tr>
-                                                    <td ></td>
-                                                    <td ></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                        <button type="submit" class="btn btn-primary mb-2">PARTICIPER</button>
+                    </div>
+                    <div id="accordeon">
+                        <div class="card">
+                            <div class="card-header" style="background-color: #ffffff">
+                                <div>
+                                    <a href="#item1" class="card-link" data-toggle="collapse" data-parent="#accordeon">
+                                        <h2>Liste des inscrits</h2>
+                                    </a>
                                 </div>
+                            </div>
+                            <div class="collapse show" id="item1">
+                                <div class="card-body" style="background-color: white;">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ></tr>
+                                        <td ></td>
+                                        <td ></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
+                            </div>
                         </div>
+                    </div>
                 </div>
+            </div>
+
                 
 
-                <div class="art-presentation" class="card mb-3">
-                        <div class="event-container">
-                                <div class="event">
-                                        <div class="art-envent-pic col-md-4">
-                                                <img class=img-responsive src="images/logo.png" style="width:80%;" alt="Info Logo" />
-                                        </div>
-                                        <div class="art-event-description col-md-8">
-                                                <div class="card-body">
-                                                <h5 class="card-title">Art n°2</h5>
-                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-                                                This is a wider card with supporting text below as a natural lead-in fdyizafdizafdfdiyzafdiydzfiyzafdiyzfiyzfdiyza
-                                                fiyfdiyazfdyzifdiyzafdiyzafydfziydzfaiydfzy to additional content.
-                                                This is a wider card with supporting text below as a natural lead-into additional content.
-                                                This is a wider card with supporting text belowas a natural lead-in to additional content.
-                                                This is a wider card with supporting text below as a natural lead-in to additional content.<br/>
-                                                This is a wider card with supporting text below as a natural lead-in to additional content.<br/>
-                                                This content is a little bit longer.</p>
-                                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                                </div> 
-                                        </div>
-                                </div>
-                <button type="submit" class="btn btn-primary mb-2">PARTICIPER</button>
-                        </div>
-                        <div id="accordeon">
-                                <div class="card">
-                                    <div class="card-header" style="background-color: #ffffff">
-                                        <div>
-                                            <a href="#item2" class="card-link" data-toggle="collapse" data-parent="#accordeon">
-                                                <h2>Liste des inscrits</h2>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="collapse show" id="item2">
-                                        <div class="card-body" style="background-color: white;">
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th>Nom</th>
-                                                    <th>Prénom</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr ></tr>
-                                                    <td ></td>
-                                                    <td ></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                </div>
-                                </div>
-                        </div>
-                </div>
-
-
-                <div class="art-presentation" class="card mb-3">
-                        <div class="event-container">
-                                <div class="event">
-                                        <div class="art-envent-pic col-md-4">
-                                                <img class=img-responsive src="images/logo.png" style="width:80%;" alt="Info Logo" />
-                                        </div>
-                                        <div class="art-event-description col-md-8">
-                                                <div class="card-body">
-                                                <h5 class="card-title">Art n°3</h5>
-                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-                                                This is a wider card with supporting text below as a natural lead-in fdyizafdizafdfdiyzafdiydzfiyzafdiyzfiyzfdiyza
-                                                fiyfdiyazfdyzifdiyzafdiyzafydfziydzfaiydfzy to additional content.
-                                                This is a wider card with supporting text below as a natural lead-into additional content.
-                                                This is a wider card with supporting text belowas a natural lead-in to additional content.
-                                                This is a wider card with supporting text below as a natural lead-in to additional content.<br/>
-                                                This is a wider card with supporting text below as a natural lead-in to additional content.<br/>
-                                                This content is a little bit longer.</p>
-                                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                                </div> 
-                                        </div>
-                                </div>
-                <button type="submit" class="btn btn-primary mb-2">PARTICIPER</button>
-                        </div>
-                        <div id="accordeon">
-                                <div class="card">
-                                    <div class="card-header" style="background-color: #ffffff">
-                                        <div>
-                                            <a href="#item3" class="card-link" data-toggle="collapse" data-parent="#accordeon">
-                                                <h2>Liste des inscrits</h2>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="collapse show" id="item3">
-                                        <div class="card-body" style="background-color: white;">
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th>Nom</th>
-                                                    <th>Prénom</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr ></tr>
-                                                    <td ></td>
-                                                    <td ></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                </div>
-                                </div>
-                        </div>
-                </div>
- 
-
-                <div class="art-presentation" class="card mb-3">
-                        <div class="event-container">
-                                <div class="event">
-                                        <div class="art-envent-pic col-md-4">
-                                                <img class=img-responsive src="images/logo.png" style="width:80%;" alt="Info Logo" />
-                                        </div>
-                                        <div class="art-event-description col-md-8">
-                                                <div class="card-body">
-                                                <h5 class="card-title">Art n°4</h5>
-                                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.
-                                                This is a wider card with supporting text below as a natural lead-in fdyizafdizafdfdiyzafdiydzfiyzafdiyzfiyzfdiyza
-                                                fiyfdiyazfdyzifdiyzafdiyzafydfziydzfaiydfzy to additional content.
-                                                This is a wider card with supporting text below as a natural lead-into additional content.
-                                                This is a wider card with supporting text belowas a natural lead-in to additional content.
-                                                This is a wider card with supporting text below as a natural lead-in to additional content.<br/>
-                                                This is a wider card with supporting text below as a natural lead-in to additional content.<br/>
-                                                This content is a little bit longer.</p>
-                                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                                </div> 
-                                        </div>
-                                </div>
-                <button type="submit" class="btn btn-primary mb-2">PARTICIPER</button>
-                        </div>
-                        <div id="accordeon">
-                                <div class="card">
-                                    <div class="card-header" style="background-color: #ffffff">
-                                        <div>
-                                            <a href="#item4" class="card-link" data-toggle="collapse" data-parent="#accordeon">
-                                                <h2>Liste des inscrits</h2>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="collapse show" id="item4">
-                                        <div class="card-body" style="background-color: white;">
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th>Nom</th>
-                                                    <th>Prénom</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr ></tr>
-                                                    <td ></td>
-                                                    <td ></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                </div>
-                                </div>
-                        </div>
-                </div>
 
 
         </div>
