@@ -64,12 +64,12 @@ public class LoginController {
      * @return to home page
      */
     @RequestMapping(value="/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
             logger.info("Le Membre "+ SecurityContextHolder.getContext().getAuthentication().getName()+" s'est déconnecté");
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/login";
+        return new ModelAndView("home");
     }
 }
