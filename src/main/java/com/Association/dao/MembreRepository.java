@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface MembreRepository extends JpaRepository<Membre,Long> {
 
 
@@ -19,6 +21,8 @@ public interface MembreRepository extends JpaRepository<Membre,Long> {
     @Query("select e from Membre e where e.email=:email")
     public Membre findByEmail(@Param("email") String email);
 
+    @Query("select m from Membre m order by m.idMembre asc ")
+    List<Membre> listMembre(@Param("idMembre") Long id);
 
 }
 

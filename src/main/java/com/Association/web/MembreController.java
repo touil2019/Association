@@ -31,7 +31,7 @@ public class MembreController {
 
     @GetMapping(value = "/home")
     public String home(){
-        return "home"; }
+        return "/home"; }
 
 
 
@@ -44,7 +44,7 @@ public class MembreController {
     public String creerMembre(Model model) {
         Membre membre = new Membre();
         model.addAttribute("membre", membre);
-        return "inscription";
+        return "/inscription";
     }
 
     /**
@@ -56,7 +56,7 @@ public class MembreController {
     @RequestMapping(value = "/membre/save", method = RequestMethod.POST)
     public String saveMembre(@Valid Membre membre, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "inscription";
+            return "/inscription";
         }
         membreRepository.save(membre);
 

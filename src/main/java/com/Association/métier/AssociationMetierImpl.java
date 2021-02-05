@@ -29,10 +29,10 @@ public class AssociationMetierImpl implements IAssociationMetier {
     @Autowired
     private ReservationRepository reservationRepository;
 
-    @Override
+ /*   @Override
     public List<Commentaires> listeCommentaireParMembre(Long idMembre) {
         return commentairesRepository.listeCommentaireParMembre(idMembre);
-    }
+    }*/
 
     @Override
     public Membre findByPseudo(String pseudo) {
@@ -43,25 +43,30 @@ public class AssociationMetierImpl implements IAssociationMetier {
     public Membre findByEmail(String email) {
         return membreRepository.findByEmail(email);
     }
-
+/*
     @Override
     public List<Evenement> listeEvenementThemeArt(String theme) {
         return evenementCulturelRepository.listeEvenementThemeArt(theme);
     }
 
     @Override
-    public List<Evenement> listeEvenementThemeMusique(String theme) {
-        return evenementCulturelRepository.listeEvenementThemeMusique(theme);
+    public List<Evenement> listeEvenementThemeCulture(String theme) {
+        return evenementCulturelRepository.listeEvenementThemeCulture(theme);
     }
 
     @Override
     public List<Evenement> listeEvenementThemeConference(String theme) {
         return evenementCulturelRepository.listeEvenementThemeConference(theme);
-    }
+    }*/
 
     @Override
     public Membre userConnected() {
         Membre membre=(Membre) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return membre;
+    }
+
+    @Override
+    public List<Membre> listMembre(Long id) {
+        return membreRepository.listMembre(id);
     }
 }

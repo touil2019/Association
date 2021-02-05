@@ -9,17 +9,19 @@ import java.util.List;
 
 public interface IAssociationMetier {
 
-    List<Commentaires> listeCommentaireParMembre(@Param("idMembre") Long idMembre);
+  /*  List<Commentaires> listeCommentaireParMembre(@Param("idMembre") Long idMembre);*/
 
     Membre findByPseudo(@Param("pseudo") String pseudo);
 
     Membre findByEmail(@Param("email") String email);
-
+/*
     List<Evenement> listeEvenementThemeArt(@Param("Art") String theme);
 
-    List<Evenement> listeEvenementThemeMusique(@Param("Musique") String theme);
+    List<Evenement> listeEvenementThemeCulture(@Param("Culture") String theme);
 
-    List<Evenement> listeEvenementThemeConference(@Param("Conference") String theme);
+    List<Evenement> listeEvenementThemeConference(@Param("Conference") String theme);*/
 
     Membre userConnected();
+
+    List<Membre> listMembre(@Param("idMembre") Long id);
 }

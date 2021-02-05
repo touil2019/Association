@@ -1,6 +1,6 @@
 package com.Association.entities;
 
-import com.Association.security.BCryptManagerUtil;
+import com.Association.security.BCryptManager;
 import com.Association.security.RoleEnum;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -109,7 +109,7 @@ public class Membre implements UserDetails {
     public Membre( @NotEmpty(message = "votre pseudo doit contenir au minimum 2 caractères") @Size(min = 2) String pseudo, @NotNull @Size(min = 4) String password, @NotNull @Email(message = "Veuillez saisir une adresse mail valide") String email, @NotNull @Size(min = 2) String nom, @NotNull @Size(min = 2) String prenom, @NotNull Integer age, @NotNull String adresse, @NotNull String complementAdresse, @NotNull String codePostale, @NotNull String ville) {
 
         this.pseudo = pseudo;
-        this.password = BCryptManagerUtil.passwordencoder().encode(password);
+        this.password = BCryptManager.passwordEncoder().encode(password);
         this.email = email;
         this.nom = nom;
         this.prenom = prenom;
@@ -158,7 +158,7 @@ public class Membre implements UserDetails {
 
     public void setPassword(String password) {
         if (!password.isEmpty()) {
-            this.password = BCryptManagerUtil.passwordencoder().encode(password);
+            this.password = BCryptManager.passwordEncoder().encode(password);
         }
     }
 

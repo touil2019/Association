@@ -10,15 +10,15 @@ import java.util.List;
 public interface EvenementCulturelRepository extends JpaRepository<Evenement,Long> {
 
 
-    @Query(value="SELECT e from Evenement e inner join fetch e.theme e where e.theme=:Art order by e.dateEvenement desc",
+/*    @Query(value="SELECT e from Evenement e inner join fetch e.theme e where e.theme=:Art order by e.dateEvenement desc",
             countQuery = "select count (e) from Evenement inner join e.theme e where e.theme=:Art")
     List<Evenement> listeEvenementThemeArt(@Param("Art") String theme);
 
-    @Query(value="SELECT e from Evenement e inner join fetch e.theme e where e.theme=:Musique order by e.dateEvenement desc",
-            countQuery = "select count (e) from Evenement inner join e.theme e where e.theme=:Musique")
-    List<Evenement> listeEvenementThemeMusique(@Param("Musique") String theme);
+    @Query(value="SELECT e from Evenement e inner join fetch e.theme e where e.theme=:Culture order by e.dateEvenement desc",
+            countQuery = "select count (e) from Evenement inner join e.theme e where e.theme=:Culture")
+    List<Evenement> listeEvenementThemeCulture(@Param("culture") String theme);
 
     @Query(value="SELECT e from Evenement e inner join fetch e.theme e where e.theme=:Conference order by e.dateEvenement desc",
             countQuery = "select count (e) from Evenement inner join e.theme e where e.theme=:Conference")
-    List<Evenement> listeEvenementThemeConference(@Param("Conference") String theme);
+    List<Evenement> listeEvenementThemeConference(@Param("Conference") String theme);*/
 }
