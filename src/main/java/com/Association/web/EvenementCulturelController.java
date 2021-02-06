@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class EvenementCulturelController {
@@ -33,10 +32,22 @@ public class EvenementCulturelController {
     private EvenementCulturelRepository evenementCulturelRepository;
 
 
-    @GetMapping(value = "/art/{id}")
-    public Evenement myEvent(@PathVariable("id")Long id)
+    @GetMapping(value = "/culture/{id}")
+    public Evenement myEventCulture(@PathVariable("id")Long id)
     {
         return evenementCulturelRepository.findById(id).get() ; }
+
+    @GetMapping(value = "/art/{id}")
+    public Evenement myEventArt(@PathVariable("id")Long id)
+    {
+        return evenementCulturelRepository.findById(id).get() ; }
+
+
+    @GetMapping(value="/conference/{id}")
+    public Evenement myEventConference(@PathVariable("id")Long id){
+        return evenementCulturelRepository.findById(id).get();    }
+
+
 
     @GetMapping(value = "/art")
     public String eventArt(Model model){
@@ -46,6 +57,24 @@ public class EvenementCulturelController {
 
 
         return "art";
+    }
+
+    @GetMapping(value = "/culture")
+    public String eventCulture(Model model){
+
+        List<Evenement> eventCulture = evenementCulturelRepository.listeEvenementParTheme("Culture");
+        model.addAttribute("eventCulture", eventCulture);
+
+
+        return "culture";
+    }
+
+    @GetMapping(value="/conference")
+    public String eventConference(Model model){
+        List<Evenement> eventConference = evenementCulturelRepository.listeEvenementParTheme("Conference");
+        model.addAttribute("eventConference",eventConference);
+
+        return "conference";
     }
 
 }

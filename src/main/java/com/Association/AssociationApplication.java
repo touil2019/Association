@@ -96,7 +96,7 @@ public class AssociationApplication implements CommandLineRunner {
 		Evenement evenement1 = new Evenement("Culture","Club De Lecture",new GregorianCalendar(2021, Calendar.FEBRUARY,12).getTime(),10,"Séance de lecture libre et Club de lecture");
 		evenementCulturelRepository.save(evenement1);
 
-		Evenement evenement2 = new Evenement("Conférence","Vivre Ensemble",new GregorianCalendar(2021, Calendar.FEBRUARY,13).getTime(),10,"Conférence sur la culture du vivre-ensemble");
+		Evenement evenement2 = new Evenement("Conference","Vivre Ensemble",new GregorianCalendar(2021, Calendar.FEBRUARY,13).getTime(),10,"Conférence sur la culture du vivre-ensemble");
 		evenementCulturelRepository.save(evenement2);
 
 		/**
