@@ -63,7 +63,13 @@ public class Reservation implements Serializable {
         this.membre = membre;
     }
 
+    public Evenement getEvenement() {
+        return evenement;
+    }
 
+    public void setEvenement(Evenement evenement) {
+        this.evenement = evenement;
+    }
 
     public Long getId() {
         return id;

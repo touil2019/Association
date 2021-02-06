@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary mb-2">PARTICIPER</button>
+                        <a  class="btn btn-primary mb-2" th:if="${#request.userPrincipal != null}" th:href="@{/art/{id}/participer(id=${evenement.id})}" th:method="post">PARTICIPER</a>
                     </div>
                     <div id="accordeon">
                         <div class="card">
