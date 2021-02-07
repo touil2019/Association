@@ -8,6 +8,7 @@ import com.Association.entities.Commentaires;
 
 import com.Association.entities.Evenement;
 import com.Association.entities.Membre;
+import com.Association.entities.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -71,6 +72,20 @@ public class AssociationMetierImpl implements IAssociationMetier {
     @Override
     public List<Evenement> listeEvenementParTheme(String theme) {
         return evenementCulturelRepository.listeEvenementParTheme(theme);
+    }
+
+    @Override
+    public List<Reservation> reservationsParMembre(Long id) {
+        return reservationRepository.findAllByMembre_Id(id) ;
+    }
+
+    @Override
+    public Boolean membreParticipeDeja(Long idEvenement, Long idMembre) {
+
+        Optional<Reservation> reservation = reservationRepository.findByEvenement_IdAndMembre_Id(idEvenement,idMembre);
+        if(reservation.isPresent()){
+            return true;
+        }else return false;
     }
 
 }

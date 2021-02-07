@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CommentairesRepository extends JpaRepository<Commentaires,Long> {
 
-    @Query(value="SELECT c from Commentaires c inner join fetch c.membre m where m.idMembre=:idMembre order by c.date desc",
+    @Query(value="SELECT c from Commentaires c inner join fetch c.membre m where m.id=:idMembre order by c.date desc",
     countQuery = "select count (c) from Commentaires inner join c.membre m where m.idMembre=:idMembre")
     List<Commentaires> listeCommentaireParMembre(@Param("idMembre") Long idMembre);
 

@@ -23,7 +23,7 @@ public class Membre implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_membre")
-    private Long idMembre;
+    private Long id;
 
     @Column(name = "pseudo", nullable = false, unique = true)
     @NotEmpty(message = "votre pseudo doit contenir au minimum 2 caractères")
@@ -123,12 +123,12 @@ public class Membre implements UserDetails {
         this.credentialsNonExpired = true;
     }
 
-    public Long getIdMembre() {
-        return idMembre;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdMembre(Long id) {
-        this.idMembre = id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPseudo() {
@@ -297,7 +297,7 @@ public class Membre implements UserDetails {
     @Override
     public String toString() {
         return "Membre{" +
-                "idMembre=" + idMembre +
+                "idMembre=" + id +
                 ", pseudo='" + pseudo + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +

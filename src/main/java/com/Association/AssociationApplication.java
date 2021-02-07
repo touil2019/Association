@@ -54,12 +54,14 @@ public class AssociationApplication implements CommandLineRunner {
 		Set<RoleEnum> actifRole = new HashSet<>();
 		actifRole.add(RoleEnum.ROLE_ACTIF);
 		actif.setRoles(actifRole);
+		actif.setEnabled(true);
 		membreRepository.save(actif);
 
 		Membre actif1 = new Membre("membre1","membre1","membre1@gmail.com","membre1","membre1",29,"18 rue Jean Mermoz","2 étage","75020","PARIS");
 		Set<RoleEnum> actif1Role = new HashSet<>();
 		actif1Role.add(RoleEnum.ROLE_ACTIF);
 		actif1.setRoles(actif1Role);
+		actif1.setEnabled(false);
 		membreRepository.save(actif1);
 
 
@@ -67,6 +69,7 @@ public class AssociationApplication implements CommandLineRunner {
 		Set<RoleEnum> bienfaiteurRole = new HashSet<>();
 		bienfaiteurRole.add(RoleEnum.ROLE_BIENFAITEUR);
 		bienfaiteur.setRoles(bienfaiteurRole);
+		bienfaiteur.setEnabled(true);
 		membreRepository.save(bienfaiteur);
 
 
@@ -74,6 +77,7 @@ public class AssociationApplication implements CommandLineRunner {
 		Set<RoleEnum> honoraireRole= new HashSet<>();
 		honoraireRole.add(RoleEnum.ROLE_HONORAIRE);
 		honoraire.setRoles(honoraireRole);
+		honoraire.setEnabled(true);
 		membreRepository.save(honoraire);
 
 		Membre admin = new Membre("admin","admin","admin@gmail.com","admin","admin",43,"18 Rue Du Philibert HOFFMANN",null,"75012","PARIS");
@@ -90,7 +94,7 @@ public class AssociationApplication implements CommandLineRunner {
 		/**
 		 * Evènement Culturel
 		 */
-		Evenement evenement = new Evenement("Art","Atelier Art Plastique",new GregorianCalendar(2021, Calendar.FEBRUARY,10).getTime(),10,"Atelier d'art plastique");
+		Evenement evenement = new Evenement("Art","Atelier Art Plastique",new GregorianCalendar(2021, Calendar.FEBRUARY,10).getTime(),10,"Atelier d'art plastique ");
 		evenementCulturelRepository.save(evenement);
 
 		Evenement evenement1 = new Evenement("Culture","Club De Lecture",new GregorianCalendar(2021, Calendar.FEBRUARY,12).getTime(),10,"Séance de lecture libre et Club de lecture");
@@ -111,10 +115,10 @@ public class AssociationApplication implements CommandLineRunner {
 		/**
 		 * réservations évènements
 		 */
-		Reservation reservation = new Reservation(new GregorianCalendar(2021, Calendar.FEBRUARY,2).getTime(), evenement.getDescription(), actif, evenement);
+		Reservation reservation = new Reservation(new GregorianCalendar(2021, Calendar.FEBRUARY,2).getTime(), actif, evenement);
 		reservationRepository.save(reservation);
 
-		Reservation reservation1 = new Reservation(new GregorianCalendar(2021, Calendar.FEBRUARY,12).getTime(), evenement1.getDescription(), actif1, evenement1);
+		Reservation reservation1 = new Reservation(new GregorianCalendar(2021, Calendar.FEBRUARY,12).getTime(), actif1, evenement1);
 		reservationRepository.save(reservation1);
 
 

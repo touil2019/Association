@@ -47,6 +47,7 @@ public class Evenement implements Serializable {
         this.dateEvenement = dateEvenement;
         this.nombreParticipantMax = nombreParticipantMax;
         this.description = description;
+        this.nombreParticipant= 0;
     }
 
     public Long getId() {

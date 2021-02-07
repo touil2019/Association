@@ -4,14 +4,18 @@ import com.Association.dao.EvenementCulturelRepository;
 import com.Association.dao.MembreRepository;
 import com.Association.dao.ReservationRepository;
 import com.Association.entities.Evenement;
+import com.Association.entities.Membre;
 import com.Association.métier.IAssociationMetier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -75,6 +79,31 @@ public class EvenementCulturelController {
         model.addAttribute("eventConference",eventConference);
 
         return "conference";
+    }
+
+    @RequestMapping(value = "/evenement/create", method = RequestMethod.GET)
+    public String creerEvent(Model model) {
+
+        Evenement evenement = new Evenement();
+
+        model.addAttribute("evenement", evenement);
+
+        return "/formNewEvent";
+    }
+
+    @RequestMapping(value = "/evenement/save", method = RequestMethod.POST)
+    public String saveEvent(@Valid Evenement evenement, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "/formNewEvent";
+        }
+        evenement.setTheme("");
+        evenement.setNom("");
+        evenement.setDateEvenement(new Date());
+        evenement.setNombreParticipant(10);
+        evenement.getDescription();
+        evenementCulturelRepository.save(evenement);
+
+        return "redirect:/home";
     }
 
 }

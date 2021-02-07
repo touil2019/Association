@@ -21,7 +21,7 @@ public interface MembreRepository extends JpaRepository<Membre,Long> {
     @Query("select e from Membre e where e.email=:email")
     public Membre findByEmail(@Param("email") String email);
 
-    @Query("select m from Membre m order by m.idMembre asc ")
+    @Query("select m from Membre m order by m.id asc ")
     List<Membre> listMembre(@Param("idMembre") Long id);
 
 }

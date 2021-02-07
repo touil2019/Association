@@ -3,6 +3,7 @@ package com.Association.métier;
 import com.Association.entities.Commentaires;
 import com.Association.entities.Evenement;
 import com.Association.entities.Membre;
+import com.Association.entities.Reservation;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
@@ -26,4 +27,8 @@ public interface IAssociationMetier {
     List<Evenement> findAllByThemeAndDateEvenementAfter(String theme, Date dateEvenement);
 
     List<Evenement> listeEvenementParTheme(String theme);
+
+    List<Reservation> reservationsParMembre(Long id);
+
+    Boolean membreParticipeDeja(Long idEvenement, Long idMembre);
 }

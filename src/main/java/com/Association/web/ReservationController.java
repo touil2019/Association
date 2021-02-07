@@ -11,11 +11,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ReservationController {
@@ -35,21 +39,54 @@ public class ReservationController {
     private EvenementCulturelRepository evenementCulturelRepository;
 
 
-    @RequestMapping(value="/art/{idEvenement}/participer", method=RequestMethod.GET)
-    public String participer(@PathVariable("idEvenement") Long idEvenement){
+    @RequestMapping(value="/evenement/{id}/participer", method=RequestMethod.GET)
+    public String participer(Model model, @PathVariable("id") Long id){
 
-        Reservation reservationArt = new Reservation();
+        Reservation reservation = new Reservation();
 
         Membre membre = iAssociationMetier.userConnected();
 
-        Evenement evenement= evenementCulturelRepository.getOne(idEvenement);
+        Optional<Evenement> e= evenementCulturelRepository.findById(id);
 
-        reservationArt.setDateReservation(new Date());
-        reservationArt.setMembre(membre);
-        reservationArt.setDescription(evenement.getNom());
-        reservationArt.setEvenement(evenement);
-        reservationRepository.save(reservationArt);
+        Evenement evenement= null;
 
-        return "art";
+
+        if(e.isPresent()){
+
+            evenement=e.get();
+            Boolean participe=iAssociationMetier.membreParticipeDeja(evenement.getId(), membre.getId());
+
+            if(participe==false && evenement.getNombreParticipant()<= evenement.getNombreParticipantMax()){
+
+                reservation.setDateReservation(new Date());
+                reservation.setMembre(membre);
+                reservation.setEvenement(evenement);
+                reservationRepository.save(reservation);
+
+                evenement.setNombreParticipant(evenement.getNombreParticipant()+1);
+                evenementCulturelRepository.save(evenement);
+
+                List<Reservation> reservations = iAssociationMetier.reservationsParMembre(membre.getId());
+
+                model.addAttribute("reservations", reservations);
+
+                return "profil";
+            } else return "redirect:/home";
+
+        }else return "redirect:/home";
+    }
+
+
+    @GetMapping(value = "/reservation/{id}/annuler")
+    public String annulerReservation(@PathVariable("id") Long id){
+
+        Membre membre = iAssociationMetier.userConnected();
+
+        Reservation reservation = reservationRepository.findById(id).get();
+
+        if(reservation.getMembre().getId()== membre.getId()){
+            reservationRepository.deleteById(id);
+        }
+        return "redirect:/profil";
     }
 }

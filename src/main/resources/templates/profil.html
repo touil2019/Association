@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html  xmlns:th="htpp://www.thymeleaf.org"
-       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-       layout:decorate="~{layout}">
+<html xmlns:th="htpp://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
 
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
-        <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <link href="/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
@@ -20,134 +28,50 @@
 
 
 <body layout:fragment="content">
-        <div class="page-corps">
-                
+<div class="page-corps">
 
-                <div id="accordeon" class="user-infos">
-                        <div class="card">
-                            <div class="card-header" style="background-color: #ffffff">
-                                <div>
-                                    <a href="#item1" class="card-link" data-toggle="collapse" data-parent="#accordeon">
-                                        <h4>Mon Profil</h4>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="collapse show" id="item1">
-                                <div class="card-body">
-                                        <table class="table listTableDeco">
-                                                <tr>
-                                                    <td>Nom d'utilisateur : </td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                   <td>Nom : </td>
-                                                   <td></td>
-                                                </tr>
-                                                <tr>
-                                                   <td>Prénom : </td>
-                                                   <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Email : </td>
-                                                    <td></td>
-                                                </tr>
-                                        </table>
-                                </div>
-                        </div>
-                        </div>
+    <div id="accordeon" class="user-infos">
+        <div class="card">
+            <div class="card-header" style="background-color: #ffffff">
+                <div>
+                    <a href="#item2" class="card-link" data-toggle="collapse" data-parent="#accordeon">
+                        <h4>Mes évenements</h4>
+                    </a>
                 </div>
-                
-
-                <div id="accordeon" class="user-infos">
-                        <div class="card">
-                            <div class="card-header" style="background-color: #ffffff">
-                                <div>
-                                    <a href="#item2" class="card-link" data-toggle="collapse" data-parent="#accordeon">
-                                        <h4>Mes évenements Arts</h4>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="collapse show" id="item2">
-                                <div class="card-body">
-                                        <table class="table listTableDeco">
-                                                <tr>
-                                                    <td>Nom de l'évenement : </td>
-                                                    
-                                                    <td>Date : </td>
-                                                   
-                                                </tr>
-                                                <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                </tr>
-                                        </table>
-                                </div>
-                        </div>
-                        </div>
+            </div>
+            <div class="collapse show" id="item2">
+                <div class="card-body">
+                    <table class="table" th:if="${reservations.size()>0}">
+                        <thead>
+                            <td>Nom de l'évenement :</td>
+                            <td>Date de l'évenement :</td>
+                            <td>Date de Réservation :</td>
+                            <td>Annuler</td>
+                        </thead>
+                        <tr th:each="reservation:${reservations}">
+                            <td th:text="${reservation.evenement.nom}"></td>
+                            <td th:text="${#dates.format(reservation.evenement.dateEvenement, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${#dates.format(reservation.dateReservation, 'dd-MM-yyyy')}"></td>
+                            <td><a class="btn btn-primary" th:href="@{/reservation/{id}/annuler(id=${reservation.id})}">Annuler</a></td>
+                        </tr>
+                    </table>
+                    <div th:if="${reservations.size()==0}">
+                        <h3> Vous n'êtes inscrit à aucun événement pour le moment</h3>
+                        <a class="btn btn-primary" th:href="@{/art}">Art </a>
+                        <a class="btn btn-primary" th:href="@{/culture}">Culture</a>
+                        <a class="btn btn-primary" th:href="@{/conference}">Conférence</a>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
 
 
-
-                <div id="accordeon" class="user-infos">
-                        <div class="card">
-                            <div class="card-header" style="background-color: #ffffff">
-                                <div>
-                                    <a href="#item3" class="card-link" data-toggle="collapse" data-parent="#accordeon">
-                                        <h4>Mes évenements Culturels</h4>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="collapse show" id="item3">
-                                <div class="card-body">
-                                        <table class="table listTableDeco">
-                                                <tr>
-                                                    <td>Nom de l'évenement : </td>
-                                                    
-                                                    <td>Date : </td>
-                                                   
-                                                </tr>
-                                                <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                </tr>
-                                        </table>
-                                </div>
-                        </div>
-                        </div>
-                </div>
-
-                <div id="accordeon" class="user-infos">
-                        <div class="card">
-                            <div class="card-header" style="background-color: #ffffff">
-                                <div>
-                                    <a href="#item4" class="card-link" data-toggle="collapse" data-parent="#accordeon">
-                                        <h4>Mes Conférences</h4>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="collapse show" id="item4">
-                                <div class="card-body">
-                                        <table class="table listTableDeco">
-                                                <tr>
-                                                    <td>Nom de l'évenement : </td>
-                                                    
-                                                    <td>Date : </td>
-                                                   
-                                                </tr>
-                                                <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                </tr>
-                                        </table>
-                                </div>
-                        </div>
-                        </div>
-                </div>
-               </div>
+</div>
 
 <footer class="navbar-fixed-bottom">
-    <hr />
-    <hr />
+    <hr/>
+    <hr/>
     <div class="containe">
         <small> Copyright 2021 </small>
     </div>

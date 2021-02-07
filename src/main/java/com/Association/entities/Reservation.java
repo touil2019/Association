@@ -15,8 +15,6 @@ public class Reservation implements Serializable {
 
     private Date dateReservation;
 
-    private String description;
-
     @ManyToOne
     @JoinColumn(name = "id_membre")
     private Membre membre;
@@ -28,14 +26,12 @@ public class Reservation implements Serializable {
     public Reservation() {
     }
 
-    public Reservation(Date dateReservation, String description, Membre membre, Evenement evenement) {
+    public Reservation(Date dateReservation, Membre membre, Evenement evenement) {
 
         this.dateReservation = dateReservation;
-        this.description = description;
         this.membre = membre;
         this.evenement = evenement;
     }
-
 
 
     public Date getDateReservation() {
@@ -46,15 +42,8 @@ public class Reservation implements Serializable {
         this.dateReservation = dateReservation;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-  public Membre getMembre() {
+    public Membre getMembre() {
         return membre;
     }
 

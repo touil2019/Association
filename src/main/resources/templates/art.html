@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html  xmlns:th="htpp://www.thymeleaf.org"
-       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
        layout:decorate="~{layout}">
 <head>
 
@@ -36,9 +36,9 @@
                                 </div>
                             </div>
                         </div>
-                        <a  class="btn btn-primary mb-2" th:if="${#request.userPrincipal != null}" th:href="@{/art/{id}/participer(id=${evenement.id})}" th:method="post">PARTICIPER</a>
+                        <a  class="btn btn-primary mb-2" th:if="${#request.userPrincipal != null}" th:href="@{/evenement/{id}/participer(id=${evenement.id})}" th:method="get">PARTICIPER</a>
                     </div>
-                    <div id="accordeon">
+                    <div id="accordeon" sec:authorize="hasRole('ROLE_ADMIN')">
                         <div class="card">
                             <div class="card-header" style="background-color: #ffffff">
                                 <div>

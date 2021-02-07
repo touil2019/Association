@@ -2,6 +2,7 @@ package com.Association.web;
 
 import com.Association.dao.MembreRepository;
 import com.Association.entities.Membre;
+import com.Association.entities.Reservation;
 import com.Association.métier.IAssociationMetier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class MembreController {
@@ -63,5 +65,14 @@ public class MembreController {
         return "redirect:/login";
     }
 
+    @GetMapping(value="/profil")
+    public String monProfil(Model model){
+
+        Membre membre= iAssociationMetier.userConnected();
+        List<Reservation> reservations = iAssociationMetier.reservationsParMembre(membre.getId());
+        model.addAttribute("reservations",reservations);
+
+        return "profil";
+    }
 
 }
