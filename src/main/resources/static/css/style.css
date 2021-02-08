@@ -45,6 +45,11 @@ table{
     background-color: #ffffff;
 }
 
+.art-envent-pic img{
+    max-width:250px;
+
+}
+
 th, td{
     color: #424242;
     border: 1px solid #eff2f4;
