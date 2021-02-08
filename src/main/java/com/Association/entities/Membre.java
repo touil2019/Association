@@ -35,34 +35,34 @@ public class Membre implements UserDetails {
     @Size(min = 4)
     private String password;
 
-    @NotNull
+
     @Column(name = "email", nullable = false, unique = true)
     @Email(message = "Veuillez saisir une adresse mail valide")
     private String email;
 
-    @NotNull
+
     @Size(min = 2)
     @Column(name = "nom", nullable = false)
     private String nom;
 
-    @NotNull
+
     @Size(min = 2)
     @Column(name = "prenom", nullable = false)
     private String prenom;
 
-    @NotNull
+
     private Integer age;
 
-    @NotNull
+
     private String adresse;
 
 
     private String complementAdresse;
 
-    @NotNull
+
     private String codePostale;
 
-    @NotNull
+
     private String ville;
 
     @ElementCollection(targetClass = RoleEnum.class, fetch = FetchType.EAGER)
@@ -101,23 +101,22 @@ public class Membre implements UserDetails {
         this.accountNonExpired = true;
         this.accountNonLocked = true;
         this.credentialsNonExpired = true;
-        this.enabled = true;
+        this.enabled = false;
         this.roles = new HashSet<>();
-        this.roles.add(RoleEnum.ROLE_ACTIF);
+
     }
 
-    public Membre( @NotEmpty(message = "votre pseudo doit contenir au minimum 2 caractères") @Size(min = 2) String pseudo, @NotNull @Size(min = 4) String password, @NotNull @Email(message = "Veuillez saisir une adresse mail valide") String email, @NotNull @Size(min = 2) String nom, @NotNull @Size(min = 2) String prenom, @NotNull Integer age, @NotNull String adresse, @NotNull String complementAdresse, @NotNull String codePostale, @NotNull String ville) {
+    public Membre( @NotEmpty(message = "votre pseudo doit contenir au minimum 2 caractères") @Size(min = 2) String pseudo,
+                   @NotNull @Size(min = 4) String password,
+                   @NotNull @Email(message = "Veuillez saisir une adresse mail valide") String email,
+                   @NotNull @Size(min = 2) String nom,
+                   @NotNull @Size(min = 2) String prenom) {
 
         this.pseudo = pseudo;
         this.password = BCryptManager.passwordEncoder().encode(password);
         this.email = email;
         this.nom = nom;
         this.prenom = prenom;
-        this.age = age;
-        this.adresse = adresse;
-        this.complementAdresse = complementAdresse;
-        this.codePostale = codePostale;
-        this.ville = ville;
         this.accountNonExpired = true;
         this.accountNonLocked = true;
         this.credentialsNonExpired = true;

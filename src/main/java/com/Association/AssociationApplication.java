@@ -50,14 +50,14 @@ public class AssociationApplication implements CommandLineRunner {
  		* Rôles et Membres de l'Association
 		*
 		*/
-		Membre actif = new Membre("membre","membre","membre@gmail.com","membre","membre",34,"18 Rue Du Colonnel FABIEN","1 étage porte droite","75011","PARIS");
+		Membre actif = new Membre("membre","membre","membre@gmail.com","membre","membre");
 		Set<RoleEnum> actifRole = new HashSet<>();
 		actifRole.add(RoleEnum.ROLE_ACTIF);
 		actif.setRoles(actifRole);
 		actif.setEnabled(true);
 		membreRepository.save(actif);
 
-		Membre actif1 = new Membre("membre1","membre1","membre1@gmail.com","membre1","membre1",29,"18 rue Jean Mermoz","2 étage","75020","PARIS");
+		Membre actif1 = new Membre("membre1","membre1","membre1@gmail.com","membre1","membre1");
 		Set<RoleEnum> actif1Role = new HashSet<>();
 		actif1Role.add(RoleEnum.ROLE_ACTIF);
 		actif1.setRoles(actif1Role);
@@ -65,7 +65,7 @@ public class AssociationApplication implements CommandLineRunner {
 		membreRepository.save(actif1);
 
 
-		Membre bienfaiteur = new Membre("bienfaiteur","bienfaiteur","bienfaiteur@gmail.com","bienfaiteur","bienfaiteur",25,"10 Place Colonnel Fabien",null,"75012","PARIS");
+		Membre bienfaiteur = new Membre("bienfaiteur","bienfaiteur","bienfaiteur@gmail.com","bienfaiteur","bienfaiteur");
 		Set<RoleEnum> bienfaiteurRole = new HashSet<>();
 		bienfaiteurRole.add(RoleEnum.ROLE_BIENFAITEUR);
 		bienfaiteur.setRoles(bienfaiteurRole);
@@ -73,14 +73,14 @@ public class AssociationApplication implements CommandLineRunner {
 		membreRepository.save(bienfaiteur);
 
 
-		Membre honoraire = new Membre("honoraire","honoraire","honoraire@gmail.com","honoraire","honoraire",25,"10 rue Jean Pierre Timbaud",null,"75012","PARIS");
+		Membre honoraire = new Membre("honoraire","honoraire","honoraire@gmail.com","honoraire","honoraire");
 		Set<RoleEnum> honoraireRole= new HashSet<>();
 		honoraireRole.add(RoleEnum.ROLE_HONORAIRE);
 		honoraire.setRoles(honoraireRole);
 		honoraire.setEnabled(true);
 		membreRepository.save(honoraire);
 
-		Membre admin = new Membre("admin","admin","admin@gmail.com","admin","admin",43,"18 Rue Du Philibert HOFFMANN",null,"75012","PARIS");
+		Membre admin = new Membre("admin","admin","admin@gmail.com","admin","admin");
 		Set<RoleEnum> adminRole = new HashSet<>();
 		adminRole.add(RoleEnum.ROLE_ADMIN);
 		adminRole.add(RoleEnum.ROLE_ACTIF);

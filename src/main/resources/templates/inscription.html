@@ -38,22 +38,22 @@
                                         <label for="username" class="text-secondary">Nom d'utilisateur :
                                             <span class="help-block" th:if="${#fields.hasErrors('membre.pseudo')}" th:errors="*{membre.pseudo}" style="color: red"></span>
                                         </label><br>
-                                        <input type="text" name="username" id="username" class="form-control" placeholder="Identifiant" required="required">
+                                        <input type="text" name="pseudo" id="username" class="form-control" placeholder="Identifiant" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <label for="username" class="text-secondary">Nom :
+                                        <label for="nom" class="text-secondary">Nom :
                                             <span class="red" th:errors="${membre.nom}"></span>
                                         </label><br>
                                         <input type="text" name="nom" id="nom" class="form-control" placeholder="Nom" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <label for="username" class="text-secondary">Prénom :
+                                        <label for="prenom" class="text-secondary">Prénom :
                                             <span class="red" th:errors="${membre.prenom}"></span>
                                         </label><br>
                                         <input type="text" name="prenom" id="prenom" class="form-control" placeholder="Prénom" required="required">
                                     </div>
                                     <div class="form-group">
-                                        <label for="username" class="text-secondary">Email :
+                                        <label for="email" class="text-secondary">Email :
                                             <span class="help-block" th:if="${#fields.hasErrors('membre.email')}" th:errors="*{membre.email}" style="color: red"></span>
                                         </label><br>
                                         <input type="email" name="email" id="email" class="form-control" placeholder="email" required="required">
@@ -64,23 +64,13 @@
                                         </label><br>
                                         <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" required="required">
                                     </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="Membre Actif">
-                                        <label class="form-check-label" for="Membre Actif">
-                                            Membre Actif
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="Membre Bienfaiteur" checked>
-                                        <label class="form-check-label" for="Membre Bienfaiteur">
-                                            Membre Bienfaiteur
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="Membre Honoraire" checked>
-                                        <label class="form-check-label" for="Membre Bienfaiteur">
-                                            Membre Honoraire
-                                        </label>
+                                    <div class="form-group">
+                                        <label class="control-label">Choix du rôle:</label>
+                                        <select class="form-control" id="role"  selected="selected" name="role">
+                                            <option th:value="ACTIF" >Actif</option>
+                                            <option th:value="BIENFAITEUR" >Bienfaiteur</option>
+                                            <option th:value="HONORAIRE" >Honoraire</option>
+                                        </select>
                                     </div>
                                     <div class="form-group row justify-content-center align-items-center">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
