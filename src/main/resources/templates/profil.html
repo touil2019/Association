@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="htpp://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
       layout:decorate="~{layout}">
 <head>
 
@@ -55,7 +55,35 @@
             </div>
         </div>
     </div>
-
+    <div id="accordeon1" sec:authorize="hasRole('ROLE_ADMIN')">
+        <div class="card">
+            <div class="card-header" style="background-color: #ffffff">
+                <div>
+                    <a href="#item1" class="card-link" data-toggle="collapse" data-parent="#accordeon">
+                        <h2>Liste des inscrits</h2>
+                    </a>
+                </div>
+            </div>
+            <div class="collapse show" id="item1">
+                <div class="card-body" style="background-color: white;">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 

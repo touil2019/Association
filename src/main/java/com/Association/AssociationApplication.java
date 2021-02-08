@@ -94,13 +94,18 @@ public class AssociationApplication implements CommandLineRunner {
 		/**
 		 * Evènement Culturel
 		 */
-		Evenement evenement = new Evenement("Art","Atelier Art Plastique",new GregorianCalendar(2021, Calendar.FEBRUARY,10).getTime(),10,"Atelier polyvalent, et il offre la possibilité de pratiquer plusieurs techniques. Il s’agit d’un atelier permettant à chacun de s’exprimer en acquérant une technique et en trouvant une ou plusieurs créations personnelles. travail personnalisé par petits groupes d’une dizaine de personnes");
+
+		Evenement evenement = new Evenement("Art","Atelier Art Plastique",10,"Atelier polyvalent, et il offre la possibilité de pratiquer plusieurs techniques. Il s’agit d’un atelier permettant à chacun de s’exprimer en acquérant une technique et en trouvant une ou plusieurs créations personnelles. travail personnalisé par petits groupes d’une dizaine de personnes");
+		evenement.setDateEvenement(new GregorianCalendar(2021, Calendar.FEBRUARY,10).getTime());
 		evenementCulturelRepository.save(evenement);
 
-		Evenement evenement1 = new Evenement("Culture","Club De Lecture",new GregorianCalendar(2021, Calendar.FEBRUARY,12).getTime(),10,"Notre association a pour but de promouvoir la littérature en réalisant ou accompagnant des manifestations culturelles autour de la lecture et de l’écriture, telles que salon du livre, cafés littéraires, conférences, club de lecture,concours d’écriture (nouvelles, poèmes, …). Notre association est ouverte à tous, n’hésitez pas à nous rejoindre en nous contactant au travers de ce site. A bientôt.");
+		Evenement evenement1 = new Evenement("Culture","Club De Lecture",10,"Notre association a pour but de promouvoir la littérature en réalisant ou accompagnant des manifestations culturelles autour de la lecture et de l’écriture, telles que salon du livre, cafés littéraires, conférences, club de lecture,concours d’écriture (nouvelles, poèmes, …). Notre association est ouverte à tous, n’hésitez pas à nous rejoindre en nous contactant au travers de ce site. A bientôt.");
+		evenement1.setDateEvenement(new GregorianCalendar(2021, Calendar.FEBRUARY,12).getTime());
 		evenementCulturelRepository.save(evenement1);
 
-		Evenement evenement2 = new Evenement("Conference","Vivre Ensemble",new GregorianCalendar(2021, Calendar.FEBRUARY,13).getTime(),10,"Notre association organise et anime des rencontres. Il peut s’agir de conférences, de projections, de débats ou d’ateliers pour aborder des questions de société, de science et de culture.");
+
+		Evenement evenement2 = new Evenement("Conference","Vivre Ensemble",10,"Notre association organise et anime des rencontres. Il peut s’agir de conférences, de projections, de débats ou d’ateliers pour aborder des questions de société, de science et de culture.");
+		evenement2.setDateEvenement(new GregorianCalendar(2021, Calendar.FEBRUARY,13).getTime());
 		evenementCulturelRepository.save(evenement2);
 
 		/**

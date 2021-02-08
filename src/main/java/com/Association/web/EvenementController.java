@@ -4,7 +4,7 @@ import com.Association.dao.EvenementCulturelRepository;
 import com.Association.dao.MembreRepository;
 import com.Association.dao.ReservationRepository;
 import com.Association.entities.Evenement;
-import com.Association.entities.Membre;
+import com.Association.métier.EvenementDto;
 import com.Association.métier.IAssociationMetier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,13 +15,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 @Controller
-public class EvenementCulturelController {
+public class EvenementController {
 
-    private static final Logger logger = LogManager.getLogger(EvenementCulturelController.class);
+    private static final Logger logger = LogManager.getLogger(EvenementController.class);
 
     @Autowired
     private IAssociationMetier iAssociationMetier;
@@ -81,35 +83,38 @@ public class EvenementCulturelController {
         return "conference";
     }
 
-    @RequestMapping(value = "/formNewEvent/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/evenement/creer", method = RequestMethod.GET)
     public String creerEvent(Model model) {
 
-        Evenement evenement = new Evenement();
+        EvenementDto evenement = new EvenementDto();
 
         model.addAttribute("evenement", evenement);
 
-        return "/formNewEvent";
+        return "formNewEvent";
     }
 
     @RequestMapping(value = "/evenement/save", method = RequestMethod.POST)
-    public String saveEvent(@Valid Evenement evenement, BindingResult bindingResult) {
+    public String saveEvent(@Valid EvenementDto evenementDto, BindingResult bindingResult) throws ParseException {
+
         if (bindingResult.hasErrors()) {
-            return "/formNewEvent";
+            return "redirect:/evenement/creer";
         }
-        evenement.setTheme("");
-        evenement.setNom("");
-        evenement.setDateEvenement(new Date());
-        evenement.setNombreParticipant(10);
-        evenement.getDescription();
+        Evenement evenement=new Evenement(evenementDto.getTheme(),evenementDto.getNom(),
+                evenementDto.getNombreParticipantMax(),evenementDto.getDescription());
+        Date date= new SimpleDateFormat("yyyy-MM-dd").parse(evenementDto.getDateEvenement());
+        evenement.setDateEvenement(date);
         evenementCulturelRepository.save(evenement);
+        switch (evenement.getTheme()){
+            case "Art": return "redirect:/art";
+            case "Culture": return "redirect:/culture";
+            case "Conference": return "redirect:/conference";
+            default: return "redirect:/home";
 
-        return "redirect:/home";
+        }
+
+
     }
 
-    @GetMapping(value="/formNewEvent")
-    public String newEvent(Model model){
 
-        return "formNewEvent";
-    }
 }
 

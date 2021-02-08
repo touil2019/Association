@@ -34,7 +34,7 @@
                 <li class="nav-item"><a class="nav-link" th:href="@{/art}">Art </a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/culture}">Culture</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/conference}">Conférence</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/formNewEvent}" sec:authorize="hasRole('ROLE_ADMIN')">Nouvel Evénement</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/evenement/creer}" sec:authorize="hasRole('ROLE_ADMIN')">Nouvel Evénement</a></li>
                 <li class="nav-item"><a class="nav-link" th:if="${#request.userPrincipal != null}" th:href="@{/profil}">Mon Espace</a></li>
                 <li class="nav-item"><a class="nav-link" th:if="${#request.userPrincipal == null}" th:href="@{/login}">Connexion</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/logout}"  th:if="${#request.userPrincipal != null}"  >Déconnexion</a></li>

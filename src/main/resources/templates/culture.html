@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="htpp://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
 
@@ -22,10 +22,10 @@
         <div class="art-presentation card mb-3">
             <div class="event-container">
                 <div class="event">
-                    <div class="art-envent-pic col-md-4">
+                    <div class="art-envent-pic col-4">
                         <img class=img-responsive th:src="@{/images/clubDeLecture.png}" style="width:80%;" alt="Info Logo"/>
                     </div>
-                    <div class="art-event-description col-md-8">
+                    <div class="art-event-description col-8">
                         <div class="card-body">
                             <h5 class="card-title">[[${evenement.nom}]]</h5>
                             <label>Aura lieu le: <label
@@ -37,35 +37,7 @@
                 </div>
                 <a class="btn btn-primary mb-2" th:if="${#request.userPrincipal != null}" th:href="@{/evenement/{id}/participer(id=${evenement.id})}" th:method="get">PARTICIPER</a>
             </div>
-            <div id="accordeon" sec:authorize="hasRole('ROLE_ADMIN')">
-                <div class="card">
-                    <div class="card-header" style="background-color: #ffffff">
-                        <div>
-                            <a href="#item1" class="card-link" data-toggle="collapse" data-parent="#accordeon">
-                                <h2>Liste des inscrits</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="collapse show" id="item1">
-                        <div class="card-body" style="background-color: white;">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                <td></td>
-                                <td></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
     </div>

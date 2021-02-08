@@ -42,10 +42,10 @@ public class Evenement implements Serializable {
     public Evenement() {
     }
 
-    public Evenement(String theme, String nom, Date dateEvenement, Integer nombreParticipantMax, String description) {
+    public Evenement(String theme, String nom,Integer nombreParticipantMax, String description) {
         this.theme = theme;
         this.nom = nom;
-        this.dateEvenement = dateEvenement;
+        this.dateEvenement = new Date();
         this.nombreParticipantMax = nombreParticipantMax;
         this.description = description;
         this.nombreParticipant= 0;
