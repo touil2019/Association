@@ -81,7 +81,7 @@ public class EvenementCulturelController {
         return "conference";
     }
 
-    @RequestMapping(value = "/evenement/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/formNewEvent/create", method = RequestMethod.GET)
     public String creerEvent(Model model) {
 
         Evenement evenement = new Evenement();
@@ -106,5 +106,10 @@ public class EvenementCulturelController {
         return "redirect:/home";
     }
 
+    @GetMapping(value="/formNewEvent")
+    public String newEvent(Model model){
+
+        return "formNewEvent";
+    }
 }
 

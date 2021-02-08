@@ -23,6 +23,7 @@ public class Evenement implements Serializable {
 
     private Integer nombreParticipantMax;
 
+    @Column(length = 500)
     private String description;
 
 

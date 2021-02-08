@@ -39,7 +39,7 @@
     
                             <div id="login-box" class="col-md-12">
     
-                                <form id="login-form" class="form" th:action="@{/evenement/save}" method="post">
+                                <form id="login-form" class="form" th:action="@{/formNewEvent/save}" method="post">
                                     <h3 class="text-center" style="color: #00a3e0" >
                                         Nouvel Evénement
                                     </h3>
@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="form-group row justify-content-center align-items-center">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" name="submit" value="submit">Enregistrer</button>
+                                        <button  type="submit" class="btn btn-primary btn-lg btn-block" name="submit" value="submit">Enregistrer</button>
                                     </div>
                                 </form>
     

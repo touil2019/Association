@@ -4,6 +4,7 @@ import com.Association.dao.MembreRepository;
 import com.Association.entities.Membre;
 import com.Association.entities.Reservation;
 import com.Association.métier.IAssociationMetier;
+import com.Association.security.RoleEnum;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +61,14 @@ public class MembreController {
         if (bindingResult.hasErrors()) {
             return "/inscription";
         }
+        membre.setPseudo("");
+        membre.setNom("");
+        membre.setPrenom("");
+        membre.setPassword("");
+        membre.setEmail("");
+        membre.setEnabled(true);
+        membre.getRoles().add(RoleEnum.ROLE_ACTIF);
+
         membreRepository.save(membre);
 
         return "redirect:/login";
