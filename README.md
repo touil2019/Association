@@ -16,7 +16,7 @@ Import de base Postgre avec pgAdmin
 
     4. A l’onglet General, dans le champ Filename, charger le fichier :
     
-    la base pour l'application  le nom du fichier est "dump_association.sql"
+    la base pour l'application  le nom du fichier est "dump_ACP.sql"
       
     Si le fichier n’apparait pas dans la liste, modifier le Format de fichiers recherché.
 
