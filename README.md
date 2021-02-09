@@ -1,5 +1,5 @@
 # Association ACP « Art, culture et philosophie du vivre ensemble »
-création d'une application pour ACP association pour permettre d'enregistrer leurs membres avev la création de nouvelles événements.
+création d'une application pour ACP association pour permettre d'enregistrer leurs membres avec la création de nouvelles événements.
 Il sera aussi permis aux membres de réserver leurs participations aux événement de l'association avec une connexion sécurisée et cryptée.
 
 #Création de la bases de données(PostgreSQL):
