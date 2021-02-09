@@ -16,10 +16,8 @@ Import de base Postgre avec pgAdmin
 
     4. A l’onglet General, dans le champ Filename, charger le fichier :
     
-    la base pour le microservice le nom du fichier est "dump_utilisateur.sql"
-    
-    la base pour le microservice le nom du fichier est "dump_book.sql"
-
+    la base pour l'application  le nom du fichier est "dump_association.sql"
+      
     Si le fichier n’apparait pas dans la liste, modifier le Format de fichiers recherché.
 
     5. Cliquer sur Restore pour importer la base. Un message « Successfully completed » indique que l’opération s’est bien déroulée.
