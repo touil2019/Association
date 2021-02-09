@@ -29,10 +29,7 @@ public class AssociationMetierImpl implements IAssociationMetier {
     @Autowired
     private ReservationRepository reservationRepository;
 
- /*   @Override
-    public List<Commentaires> listeCommentaireParMembre(Long idMembre) {
-        return commentairesRepository.listeCommentaireParMembre(idMembre);
-    }*/
+
 
     @Override
     public Membre findByPseudo(String pseudo) {

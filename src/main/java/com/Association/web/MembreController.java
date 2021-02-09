@@ -32,8 +32,10 @@ public class MembreController {
     MembreRepository membreRepository;
 
 
-
-
+    /**
+     * Appel de la page d'accueil
+     * @return
+     */
     @GetMapping(value = "/home")
     public String home(){
         return "/home"; }
@@ -41,7 +43,7 @@ public class MembreController {
 
 
     /**
-     *
+     *Appel de la page d'inscription d'un nouveau membre
      * @param model
      * @return
      */
@@ -54,7 +56,7 @@ public class MembreController {
     }
 
     /**
-     *
+     *Sauvegarde d'un nouveau Membre et son rôle
      * @param membreDto
      * @param bindingResult
      * @return
@@ -82,6 +84,11 @@ public class MembreController {
         return "redirect:/login";
     }
 
+    /**
+     * Appel de la page Profil et qui retourne une liste de Reservation d'un membre et une liste de Membre
+     * @param model
+     * @return
+     */
     @GetMapping(value="/profil")
     public String monProfil(Model model){
 
@@ -99,6 +106,11 @@ public class MembreController {
         return "profil";
     }
 
+    /**
+     * Validation d'un Membre suite à la création de son compte
+     * @param id
+     * @return
+     */
     @GetMapping(value="/membre/{id}/valider")
     public String validerMembre(@PathVariable(name="id")Long id){
         Membre membre= iAssociationMetier.userConnected();

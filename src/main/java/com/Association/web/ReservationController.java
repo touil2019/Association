@@ -38,7 +38,12 @@ public class ReservationController {
     @Autowired
     private EvenementCulturelRepository evenementCulturelRepository;
 
-
+    /**
+     * Méthode pour enregistrer la participation d un membre à un événement
+     * @param model
+     * @param id
+     * @return
+     */
     @RequestMapping(value="/evenement/{id}/participer", method=RequestMethod.GET)
     public String participer(Model model, @PathVariable("id") Long id){
 
@@ -76,7 +81,11 @@ public class ReservationController {
         }else return "redirect:/home";
     }
 
-
+    /**
+     * Méthode pour annuler la participation d un membre
+     * @param id
+     * @return page profil
+     */
     @GetMapping(value = "/reservation/{id}/annuler")
     public String annulerReservation(@PathVariable("id") Long id){
 

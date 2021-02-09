@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,11 +18,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@RestController
+@Controller
 public class LoginController {
 
     private static final Logger logger = LogManager.getLogger(LoginController.class);
 
+    /**
+     * méthode de connexion d'un membre
+     * @param model
+     * @param error
+     * @param logout
+     * @return page home si erreur retourne la page login
+     */
     @RequestMapping(value = "/login")
     public ModelAndView loginGet(Model model, @RequestParam(value = "error", required = false)String error, @RequestParam(value = "logout", required = false) String logout){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -42,26 +50,13 @@ public class LoginController {
         return new ModelAndView("/login");
     }
 
-  /*  *//**
-     * method used to log-in an user
-     * @return a page depending on success of authentication
-     *//*
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView loginGet() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-            logger.info("connexion du membre"+ SecurityContextHolder.getContext().getAuthentication().getName());
-            return new ModelAndView("redirect:/art");
-        }
-        return new ModelAndView("/login");
-    }*/
 
    /**
-     * method used to log-out an user
+     * méthode pour déconnecter un membre
      * @param request request  from http  server
      * @param response response from http server
-     * @return to home page
+     * @return page home
      */
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public ModelAndView logoutPage (HttpServletRequest request, HttpServletResponse response) {
