@@ -4,7 +4,7 @@ Il sera aussi permis aux membres de réserver leurs participations aux événeme
 
 #Création de la bases de données(PostgreSQL):
 Association ACP comportant les tables :
-membre,evenement,membre_evenement,reservation
+membre,evenement,membre_evenement,reservation et rôles.
 
 Import de base Postgre avec pgAdmin
 
