@@ -13,13 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class MembreController {
@@ -90,7 +89,30 @@ public class MembreController {
         List<Reservation> reservations = iAssociationMetier.reservationsParMembre(membre.getId());
         model.addAttribute("reservations",reservations);
 
+
+        List<Membre> membres = iAssociationMetier.findAllByEnabledIsFalse();
+        List<MembreDto> membreDtos= new ArrayList<>();
+        for (Membre m: membres) {
+            membreDtos.add(new MembreDto(m));
+        }
+        model.addAttribute("membres",membreDtos);
         return "profil";
+    }
+
+    @GetMapping(value="/membre/{id}/valider")
+    public String validerMembre(@PathVariable(name="id")Long id){
+        Membre membre= iAssociationMetier.userConnected();
+        if(membre.getRoles().contains(RoleEnum.ROLE_ADMIN)){
+            Optional<Membre> m= membreRepository.findById(id);
+            if(m.isPresent()){
+                Membre membreAValider= m.get();
+                membreAValider.setEnabled(true);
+                membreRepository.save(membreAValider);
+
+            }
+
+        }
+      return "redirect:/profil";
     }
 
 }

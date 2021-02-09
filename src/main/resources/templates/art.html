@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns:th="htpp://www.thymeleaf.org"
+<html  xmlns:th="http://www.thymeleaf.org"
        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
        layout:decorate="~{layout}">
 <head>
@@ -18,7 +18,7 @@
 
 <body layout:fragment="content">
         <div class="page-corps">
-            <div th:each="evenement:${evenements}">
+            <div th:each="eventParticipantsDto:${eventDtoList}">
                 <div class="art-presentation card mb-3">
                     <div class="event-container">
                         <div class="event">
@@ -27,23 +27,50 @@
                             </div>
                             <div class="art-event-description col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">[[${evenement.nom}]]</h5>
-                                    <label>Aura lieu le: <label th:text="${#dates.format(evenement.dateEvenement, 'dd-MM-yyyy')}"></label></label><br/>
-                                    <label>Nombre de participants maximum: [[${evenement.nombreParticipantMax}]]</label>
-                                    <p class="card-text">[[${evenement.description}]]</p>
+                                    <h5 class="card-title">[[${eventParticipantsDto.evenement.nom}]]</h5>
+                                    <label>Aura lieu le: <label th:text="${#dates.format(eventParticipantsDto.evenement.dateEvenement, 'dd-MM-yyyy')}"></label></label><br/>
+                                    <label>Nombre de participants maximum: [[${eventParticipantsDto.evenement.nombreParticipantMax}]]</label>
+                                    <p class="card-text">[[${eventParticipantsDto.evenement.description}]]</p>
 
                                 </div>
                             </div>
                         </div>
-                        <a  class="btn btn-primary mb-2" th:if="${#request.userPrincipal != null}" th:href="@{/evenement/{id}/participer(id=${evenement.id})}" th:method="get">PARTICIPER</a>
+                        <a  class="btn btn-primary mb-2" th:if="${#request.userPrincipal != null}" th:href="@{/evenement/{id}/participer(id=${eventParticipantsDto.evenement.id})}" th:method="get">PARTICIPER</a>
+                    </div>
+                </div>
+                <div id="accordeon1" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <div class="card">
+                        <div class="card-header" style="background-color: #ffffff">
+                            <div>
+                                <a href="#item1" class="card-link" data-toggle="collapse" data-parent="#accordeon">
+                                    <h2>Liste des Membres inscrits à l'événement [[${eventParticipantsDto.evenement.nom}]]</h2>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="collapse show" id="item1">
+                            <div class="card-body" style="background-color: white;">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>Pseudo</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="reservation:${eventParticipantsDto.reservations}">
+                                        <td th:text="${reservation.membre.nom}"></td>
+                                        <td th:text="${reservation.membre.prenom}"></td>
+                                        <td th:text="${reservation.membre.pseudo}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-                
-
-
-
         </div>
 
 </body>

@@ -1,10 +1,8 @@
 package com.Association.métier;
 
-import com.Association.entities.Commentaires;
 import com.Association.entities.Evenement;
 import com.Association.entities.Membre;
 import com.Association.entities.Reservation;
-import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -12,7 +10,7 @@ import java.util.Optional;
 
 public interface IAssociationMetier {
 
-  /*  List<Commentaires> listeCommentaireParMembre(@Param("idMembre") Long idMembre);*/
+
 
     Membre findByPseudo( String pseudo);
 
@@ -31,4 +29,7 @@ public interface IAssociationMetier {
     List<Reservation> reservationsParMembre(Long id);
 
     Boolean membreParticipeDeja(Long idEvenement, Long idMembre);
+
+    List<Membre> findAllByEnabledIsFalse();
+
 }

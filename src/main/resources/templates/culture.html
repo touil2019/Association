@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
       layout:decorate="~{layout}">
 <head>
 
@@ -37,9 +37,45 @@
                 </div>
                 <a class="btn btn-primary mb-2" th:if="${#request.userPrincipal != null}" th:href="@{/evenement/{id}/participer(id=${evenement.id})}" th:method="get">PARTICIPER</a>
             </div>
-
         </div>
+        <div id="accordeon1" sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="card">
+                <div class="card-header" style="background-color: #ffffff">
+                    <div>
+                        <a href="#item1" class="card-link" data-toggle="collapse" data-parent="#accordeon">
+                            <h2>Liste des Membres</h2>
+                        </a>
+                    </div>
+                </div>
 
+                <div class="collapse show" id="item1">
+                    <div class="card-body" style="background-color: white;">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Pseudo</th>
+                                <th>Email</th>
+                                <th>Rôle</th>
+                                <th>Valider</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="membre:${membres}">
+                                <td th:text="${membre.nom}"></td>
+                                <td th:text="${membre.prenom}"></td>
+                                <td th:text="${membre.pseudo}"></td>
+                                <td th:text="${membre.email}"></td>
+                                <td th:text="${membre.role}"></td>
+                                <td><a class="btn btn-primary" th:href="@{/membre/{id}/valider(id=${membre.id})}">Valider</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 

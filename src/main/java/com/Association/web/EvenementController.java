@@ -4,7 +4,9 @@ import com.Association.dao.EvenementCulturelRepository;
 import com.Association.dao.MembreRepository;
 import com.Association.dao.ReservationRepository;
 import com.Association.entities.Evenement;
+import com.Association.entities.Reservation;
 import com.Association.métier.EvenementDto;
+import com.Association.métier.EventParticipantsDto;
 import com.Association.métier.IAssociationMetier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -57,9 +60,14 @@ public class EvenementController {
 
     @GetMapping(value = "/art")
     public String eventArt(Model model){
-
+        List<EventParticipantsDto> eventParticipantsDtoList= new ArrayList<>();
         List<Evenement> evenements= evenementCulturelRepository.listeEvenementParTheme("Art");
-        model.addAttribute("evenements",evenements);
+        for (Evenement evenement: evenements) {
+            List<Reservation> reservations= reservationRepository.findAllByEvenement_Id(evenement.getId());
+            EventParticipantsDto eventParticipantsDto= new EventParticipantsDto(evenement,reservations);
+            eventParticipantsDtoList.add(eventParticipantsDto);
+        }
+        model.addAttribute("eventDtoList",eventParticipantsDtoList);
 
 
         return "art";

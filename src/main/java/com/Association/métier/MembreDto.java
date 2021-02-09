@@ -1,9 +1,12 @@
 package com.Association.métier;
 
 
+import com.Association.entities.Membre;
+import com.Association.security.RoleEnum;
 
 public class MembreDto {
 
+    private Long id;
 
     private String pseudo;
 
@@ -16,6 +19,14 @@ public class MembreDto {
     private String prenom;
 
     private String role;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getPseudo() {
         return pseudo;
@@ -63,5 +74,23 @@ public class MembreDto {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public MembreDto(Membre membre) {
+     this.id= membre.getId();
+     this.nom= membre.getNom();
+     this.prenom= membre.getPrenom();
+     this.pseudo= membre.getPseudo();
+     this.email= membre.getEmail();
+     if(membre.getRoles().contains(RoleEnum.ROLE_ACTIF)){
+         this.role= "Actif";
+     }else if(membre.getRoles().contains(RoleEnum.ROLE_BIENFAITEUR)){
+         this.role= "Bienfaiteur";
+     } else if(membre.getRoles().contains(RoleEnum.ROLE_HONORAIRE)) {
+         this.role= "Honoraire";
+     }
+    }
+    public MembreDto() {
+
     }
 }

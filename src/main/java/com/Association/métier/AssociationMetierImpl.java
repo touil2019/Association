@@ -1,10 +1,8 @@
 package com.Association.métier;
 
-import com.Association.dao.CommentairesRepository;
 import com.Association.dao.EvenementCulturelRepository;
 import com.Association.dao.MembreRepository;
 import com.Association.dao.ReservationRepository;
-import com.Association.entities.Commentaires;
 
 import com.Association.entities.Evenement;
 import com.Association.entities.Membre;
@@ -23,8 +21,7 @@ public class AssociationMetierImpl implements IAssociationMetier {
     @Autowired
     private MembreRepository membreRepository;
 
-    @Autowired
-    private CommentairesRepository commentairesRepository;
+
 
     @Autowired
     private EvenementCulturelRepository evenementCulturelRepository;
@@ -86,6 +83,11 @@ public class AssociationMetierImpl implements IAssociationMetier {
         if(reservation.isPresent()){
             return true;
         }else return false;
+    }
+
+  @Override
+    public List<Membre> findAllByEnabledIsFalse() {
+        return membreRepository.findAllByEnabledIsFalse();
     }
 
 }

@@ -24,5 +24,7 @@ public interface MembreRepository extends JpaRepository<Membre,Long> {
     @Query("select m from Membre m order by m.id asc ")
     List<Membre> listMembre(@Param("idMembre") Long id);
 
+    List<Membre> findAllByEnabledIsFalse();
+
 }
 

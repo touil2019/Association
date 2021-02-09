@@ -1,10 +1,8 @@
 package com.Association;
 
-import com.Association.dao.CommentairesRepository;
 import com.Association.dao.EvenementCulturelRepository;
 import com.Association.dao.MembreRepository;
 import com.Association.dao.ReservationRepository;
-import com.Association.entities.Commentaires;
 import com.Association.entities.Evenement;
 import com.Association.entities.Membre;
 import com.Association.entities.Reservation;
@@ -26,8 +24,7 @@ public class AssociationApplication implements CommandLineRunner {
 	@Autowired
 	EvenementCulturelRepository evenementCulturelRepository;
 
-	@Autowired
-	CommentairesRepository commentairesRepository;
+
 
 	@Autowired
 	ReservationRepository reservationRepository;
@@ -108,14 +105,7 @@ public class AssociationApplication implements CommandLineRunner {
 		evenement2.setDateEvenement(new GregorianCalendar(2021, Calendar.FEBRUARY,13).getTime());
 		evenementCulturelRepository.save(evenement2);
 
-		/**
-		 * commentaires des membres
-		 */
-		Commentaires commentaires = new Commentaires(1L,actif1,"Super ambiance lors du dernier atelier musique et l'initiation au didgeridoo",new GregorianCalendar(2021, Calendar.FEBRUARY,3).getTime());
-		commentairesRepository.save(commentaires);
 
-		Commentaires commentaires1 = new Commentaires(2L,actif,"Super ambiance lors du dernier atelier musique et l'initiation au didgeridoo",new GregorianCalendar(2021, Calendar.FEBRUARY,3).getTime());
-		commentairesRepository.save(commentaires1);
 
 		/**
 		 * réservations évènements
@@ -123,7 +113,7 @@ public class AssociationApplication implements CommandLineRunner {
 		Reservation reservation = new Reservation(new GregorianCalendar(2021, Calendar.FEBRUARY,2).getTime(), actif, evenement);
 		reservationRepository.save(reservation);
 
-		Reservation reservation1 = new Reservation(new GregorianCalendar(2021, Calendar.FEBRUARY,12).getTime(), actif1, evenement1);
+		Reservation reservation1 = new Reservation(new GregorianCalendar(2021, Calendar.FEBRUARY,12).getTime(), actif, evenement1);
 		reservationRepository.save(reservation1);
 
 

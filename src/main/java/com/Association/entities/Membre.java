@@ -94,8 +94,7 @@ public class Membre implements UserDetails {
     @OneToMany(mappedBy = "membre", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Collection<Reservation> reservations;
 
-    @OneToMany(mappedBy = "membre", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Collection<Commentaires> commentaires;
+
 
     public Membre() {
         this.accountNonExpired = true;
@@ -285,13 +284,7 @@ public class Membre implements UserDetails {
         this.reservations = reservations;
     }
 
-    public Collection<Commentaires> getCommentaires() {
-        return commentaires;
-    }
 
-    public void setCommentaires(Collection<Commentaires> commentaires) {
-        this.commentaires = commentaires;
-    }
 
     @Override
     public String toString() {
@@ -314,7 +307,6 @@ public class Membre implements UserDetails {
                 ", enabled=" + enabled +
                 ", evenements=" + evenements +
                 ", Reservations=" + reservations +
-                ", commentaires=" + commentaires +
                 '}';
     }
 }
