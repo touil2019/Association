@@ -18,7 +18,7 @@
 
 <body layout:fragment="content">
 <div class="page-corps">
-    <div th:each="evenement:${eventCulture}">
+    <div th:each="eventParticipantsDto:${eventDtoList}">
         <div class="art-presentation card mb-3">
             <div class="event-container">
                 <div class="event">
@@ -27,15 +27,15 @@
                     </div>
                     <div class="art-event-description col-8">
                         <div class="card-body">
-                            <h5 class="card-title">[[${evenement.nom}]]</h5>
+                            <h5 class="card-title">[[${eventParticipantsDto.evenement.nom}]]</h5>
                             <label>Aura lieu le: <label
-                                    th:text="${#dates.format(evenement.dateEvenement, 'dd-MM-yyyy')}"></label></label><br/>
-                            <label>Nombre de participants maximum: [[${evenement.nombreParticipantMax}]]</label>
-                            <p class="card-text">[[${evenement.description}]]</p>
+                                    th:text="${#dates.format(eventParticipantsDto.evenement.dateEvenement, 'dd-MM-yyyy')}"></label></label><br/>
+                            <label>Nombre de participants maximum: [[${eventParticipantsDto.evenement.nombreParticipantMax}]]</label>
+                            <p class="card-text">[[${eventParticipantsDto.evenement.description}]]</p>
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-primary mb-2" th:if="${#request.userPrincipal != null}" th:href="@{/evenement/{id}/participer(id=${evenement.id})}" th:method="get">PARTICIPER</a>
+                <a class="btn btn-primary mb-2" th:if="${#request.userPrincipal != null}" th:href="@{/evenement/{id}/participer(id=${eventParticipantsDto.evenement.id})}" th:method="get">PARTICIPER</a>
             </div>
         </div>
         <div id="accordeon1" sec:authorize="hasRole('ROLE_ADMIN')">
@@ -56,19 +56,13 @@
                                 <th>Nom</th>
                                 <th>Prénom</th>
                                 <th>Pseudo</th>
-                                <th>Email</th>
-                                <th>Rôle</th>
-                                <th>Valider</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="membre:${membres}">
-                                <td th:text="${membre.nom}"></td>
-                                <td th:text="${membre.prenom}"></td>
-                                <td th:text="${membre.pseudo}"></td>
-                                <td th:text="${membre.email}"></td>
-                                <td th:text="${membre.role}"></td>
-                                <td><a class="btn btn-primary" th:href="@{/membre/{id}/valider(id=${membre.id})}">Valider</a></td>
+                            <tr th:each="reservation:${eventParticipantsDto.reservations}">
+                                <td th:text="${reservation.membre.nom}"></td>
+                                <td th:text="${reservation.membre.prenom}"></td>
+                                <td th:text="${reservation.membre.pseudo}"></td>
                             </tr>
                             </tbody>
                         </table>

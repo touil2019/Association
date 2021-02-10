@@ -98,8 +98,14 @@ public class EvenementController {
     @GetMapping(value = "/culture")
     public String eventCulture(Model model){
 
-        List<Evenement> eventCulture = evenementCulturelRepository.listeEvenementParTheme("Culture");
-        model.addAttribute("eventCulture", eventCulture);
+        List<EventParticipantsDto> eventParticipantsDtoList= new ArrayList<>();
+        List<Evenement> evenements= evenementCulturelRepository.listeEvenementParTheme("Culture");
+        for (Evenement evenement: evenements) {
+            List<Reservation> reservations= reservationRepository.findAllByEvenement_Id(evenement.getId());
+            EventParticipantsDto eventParticipantsDto= new EventParticipantsDto(evenement,reservations);
+            eventParticipantsDtoList.add(eventParticipantsDto);
+        }
+        model.addAttribute("eventDtoList",eventParticipantsDtoList);
 
 
         return "culture";
@@ -112,8 +118,14 @@ public class EvenementController {
      */
     @GetMapping(value="/conference")
     public String eventConference(Model model){
-        List<Evenement> eventConference = evenementCulturelRepository.listeEvenementParTheme("Conference");
-        model.addAttribute("eventConference",eventConference);
+        List<EventParticipantsDto> eventParticipantsDtoList= new ArrayList<>();
+        List<Evenement> evenements= evenementCulturelRepository.listeEvenementParTheme("Conference");
+        for (Evenement evenement: evenements) {
+            List<Reservation> reservations= reservationRepository.findAllByEvenement_Id(evenement.getId());
+            EventParticipantsDto eventParticipantsDto= new EventParticipantsDto(evenement,reservations);
+            eventParticipantsDtoList.add(eventParticipantsDto);
+        }
+        model.addAttribute("eventDtoList",eventParticipantsDtoList);
 
         return "conference";
     }
