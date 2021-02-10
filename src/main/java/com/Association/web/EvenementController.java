@@ -43,7 +43,7 @@ public class EvenementController {
     /**
      * Méthode pour récupérer l'événément culture par id
      * @param id
-     * @return
+     * @return retourne les événements par id
      */
     @GetMapping(value = "/culture/{id}")
     public Evenement myEventCulture(@PathVariable("id")Long id)
@@ -85,15 +85,14 @@ public class EvenementController {
             eventParticipantsDtoList.add(eventParticipantsDto);
         }
         model.addAttribute("eventDtoList",eventParticipantsDtoList);
-
-
+        logger.info("Un membre veut accéder à la page art pour consultation");
         return "art";
     }
 
     /**
      * Méthode pour récupérer les événements culture par thème
      * @param model
-     * @return
+     * @return page culture
      */
     @GetMapping(value = "/culture")
     public String eventCulture(Model model){
@@ -106,7 +105,7 @@ public class EvenementController {
             eventParticipantsDtoList.add(eventParticipantsDto);
         }
         model.addAttribute("eventDtoList",eventParticipantsDtoList);
-
+        logger.info("Un membre veut accéder à la page culture pour consultation");
 
         return "culture";
     }
@@ -114,7 +113,7 @@ public class EvenementController {
     /**
      * Méthode pour récupérer les événements conférence par thème
      * @param model
-     * @return
+     * @return page conference
      */
     @GetMapping(value="/conference")
     public String eventConference(Model model){
@@ -126,20 +125,20 @@ public class EvenementController {
             eventParticipantsDtoList.add(eventParticipantsDto);
         }
         model.addAttribute("eventDtoList",eventParticipantsDtoList);
-
+        logger.info("Un membre veut accéder à la page conference pour consultation");
         return "conference";
     }
 
     /**
      * methode pour accéder au formulaire de création d'un événement
      * @param model
-     * @return
+     * @return formulaire de création d'événement
      */
     @RequestMapping(value = "/evenement/creer", method = RequestMethod.GET)
     public String creerEvent(Model model) {
 
         EvenementDto evenement = new EvenementDto();
-
+        logger.info("Un membre veut accéder au formulaire de création d'un événement");
         model.addAttribute("evenement", evenement);
 
         return "formNewEvent";
@@ -149,7 +148,7 @@ public class EvenementController {
      * Méthode pour sauvegarder un nouvel événement par thème
      * @param evenementDto
      * @param bindingResult
-     * @return
+     * @return retourne un nouvel événement par thème
      * @throws ParseException
      */
     @RequestMapping(value = "/evenement/save", method = RequestMethod.POST)
@@ -163,6 +162,7 @@ public class EvenementController {
         Date date= new SimpleDateFormat("yyyy-MM-dd").parse(evenementDto.getDateEvenement());
         evenement.setDateEvenement(date);
         evenementCulturelRepository.save(evenement);
+        logger.info("Un nouvel événement a été ajouté à la DB");
         switch (evenement.getTheme()){
             case "Art": return "redirect:/art";
             case "Culture": return "redirect:/culture";

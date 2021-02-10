@@ -41,8 +41,8 @@ public class ReservationController {
     /**
      * Méthode pour enregistrer la participation d un membre à un événement
      * @param model
-     * @param id
-     * @return
+     * @param id identifiant de l'événement
+     * @return retourne la page d'accueil
      */
     @RequestMapping(value="/evenement/{id}/participer", method=RequestMethod.GET)
     public String participer(Model model, @PathVariable("id") Long id){
@@ -74,7 +74,7 @@ public class ReservationController {
                 List<Reservation> reservations = iAssociationMetier.reservationsParMembre(membre.getId());
 
                 model.addAttribute("reservations", reservations);
-
+                logger.info("Un membre vient de valider sa participation à l'événement");
                 return "profil";
             } else return "redirect:/home";
 
@@ -83,7 +83,7 @@ public class ReservationController {
 
     /**
      * Méthode pour annuler la participation d un membre
-     * @param id
+     * @param id identifiant de la reservation
      * @return page profil
      */
     @GetMapping(value = "/reservation/{id}/annuler")
@@ -96,6 +96,7 @@ public class ReservationController {
         if(reservation.getMembre().getId()== membre.getId()){
             reservationRepository.deleteById(id);
         }
+        logger.info("Un membre vient d'annuler sa participation à l'événement");
         return "redirect:/profil";
     }
 }
