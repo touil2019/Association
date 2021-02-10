@@ -34,10 +34,11 @@ public class MembreController {
 
     /**
      * Appel de la page d'accueil
-     * @return
+     * @return retourne la page d'accueil
      */
     @GetMapping(value = "/home")
     public String home(){
+        logger.info("Un visiteur veut accéder à la page d'accueil");
         return "/home"; }
 
 
@@ -45,11 +46,12 @@ public class MembreController {
     /**
      *Appel de la page d'inscription d'un nouveau membre
      * @param model
-     * @return
+     * @return formulaire d'inscription
      */
     @RequestMapping(value = "/membre/create", method = RequestMethod.GET)
     public String creerMembre(Model model) {
         MembreDto membre = new MembreDto();
+        logger.info("Un visiteur veut accéder au formulaire d'inscription");
         model.addAttribute("membre", membre);
         model.addAttribute("roleEnum",RoleEnum.values());
         return "/inscription";
@@ -59,7 +61,7 @@ public class MembreController {
      *Sauvegarde d'un nouveau Membre et son rôle
      * @param membreDto
      * @param bindingResult
-     * @return
+     * @return retourne la page login
      */
     @RequestMapping(value = "/membre/save", method = RequestMethod.POST)
     public String saveMembre(@Valid MembreDto membreDto, BindingResult bindingResult) {
@@ -81,6 +83,7 @@ public class MembreController {
         }
         membre.setRoles(roles);
         membreRepository.save(membre);
+        logger.info("L'utilisateur "+membreDto.getPseudo()+" a été ajouté a la DB");
         return "redirect:/login";
     }
 
@@ -103,13 +106,14 @@ public class MembreController {
             membreDtos.add(new MembreDto(m));
         }
         model.addAttribute("membres",membreDtos);
+        logger.info("Un visiteur veut accéder à son profil");
         return "profil";
     }
 
     /**
      * Validation d'un Membre suite à la création de son compte
-     * @param id
-     * @return
+     * @param id identifiant du membre
+     * @return retourne la page profil
      */
     @GetMapping(value="/membre/{id}/valider")
     public String validerMembre(@PathVariable(name="id")Long id){
@@ -120,7 +124,7 @@ public class MembreController {
                 Membre membreAValider= m.get();
                 membreAValider.setEnabled(true);
                 membreRepository.save(membreAValider);
-
+                logger.info("Le profil du membre "+m.get()+" a été validé");
             }
 
         }
