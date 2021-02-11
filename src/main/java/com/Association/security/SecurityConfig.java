@@ -48,8 +48,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout=true")
                 .and()
-                .csrf()
-                .and()
+                .csrf().disable()
+
                 .sessionManagement().maximumSessions(1).expiredUrl("/login");
     }
 

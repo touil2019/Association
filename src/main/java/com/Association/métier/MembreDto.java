@@ -3,21 +3,23 @@ package com.Association.métier;
 
 import com.Association.entities.Membre;
 import com.Association.security.RoleEnum;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MembreDto {
 
+    @JsonProperty("id")
     private Long id;
-
+    @JsonProperty("pseudo")
     private String pseudo;
-
+    @JsonProperty("password")
     private String password;
-
+    @JsonProperty("email")
     private String email;
-
+    @JsonProperty("nom")
     private String nom;
-
+    @JsonProperty("prenom")
     private String prenom;
-
+    @JsonProperty("role")
     private String role;
 
     public Long getId() {

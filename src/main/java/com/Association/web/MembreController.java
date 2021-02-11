@@ -68,7 +68,7 @@ public class MembreController {
         if (bindingResult.hasErrors()) {
             return "/inscription";
         }
-      Membre membre= new Membre();
+        Membre membre= new Membre();
         membre.setNom(membreDto.getNom());
         membre.setPrenom(membreDto.getPrenom());
         membre.setPseudo(membreDto.getPseudo());
